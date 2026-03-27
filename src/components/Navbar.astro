@@ -1,0 +1,111 @@
+---
+// src/components/Navbar.astro
+// User mentioned they have the images, so using standard img tags as placeholders.
+// Can be swapped with Astro <Image /> as needed.
+---
+
+<nav class="ek-navbar">
+  <div class="ek-container ek-navbar-content">
+    <div class="ek-logo">
+      <div class="ek-logo-wrapper">
+        <a href="/">
+          <img
+            src="/logo.svg"
+            alt="Express Kitchens"
+            height="32"
+            class="ek-logo-img"
+          />
+        </a>
+      </div>
+    </div>
+    <div class="ek-cta-container">
+      <button class="ek-cta-button">Shop Assembled Cabinets</button>
+      <!-- If subtext is needed globally, uncomment below: -->
+      <!-- <span class="ek-subtext">No credit card required</span> -->
+    </div>
+  </div>
+</nav>
+
+<style>
+  .ek-navbar {
+    padding: 0.8rem 0;
+    background-color: var(--ek-white);
+    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.04);
+    border-bottom: 1px solid var(--ek-gray-tint-80);
+    /* Removing the 50px border-radius as the Express Kitchens brand (Frame 2) shows a flat navbar, 
+		   but if specific curve is needed, it goes here */
+    z-index: 9999;
+    position: sticky;
+    top: 0;
+  }
+
+  .ek-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+  }
+
+  .ek-navbar-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  .ek-logo-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .ek-cta-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  .ek-cta-button {
+    background: transparent;
+    border: 1px solid var(--ek-primary-red); /* Volcano Red */
+    color: var(--ek-primary-red);
+    padding: 0.6rem 1.75rem;
+    border-radius: 6px; /* Brand guideline usually prefers slight rounding 4px for buttons */
+    font-family: var(--ek-primary-font);
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 140%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .ek-cta-button:hover {
+    background: var(--ek-red-shade-10); /* primary CTA shade */
+    color: var(--ek-white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 6px rgba(242, 8, 25, 0.2);
+  }
+
+  .ek-subtext {
+    font-weight: 400;
+    font-size: 11px;
+    line-height: 140%;
+    text-align: center;
+    color: var(--ek-gray-tint-40); /* Secondary Text */
+  }
+
+  /* Mobile Enhancements */
+  @media (max-width: 640px) {
+    .ek-container {
+      padding: 0 1rem;
+    }
+
+    .ek-cta-button {
+      padding: 0.4rem 0.8rem;
+      font-size: 14px;
+    }
+    .ek-subtext {
+      font-size: 9px;
+    }
+  }
+</style>

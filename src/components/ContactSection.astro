@@ -1,0 +1,351 @@
+---
+import { Image } from "astro:assets";
+import dresser from "../assets/images/dresser.svg";
+import design_services from "../assets/images/design_services.svg";
+import phone_callback from "../assets/images/phone_callback.svg";
+// src/components/ContactSection.astro
+---
+
+<section class="ek-contact-section">
+  <div class="container">
+    <div class="ek-contact-card">
+      <!-- Header -->
+      <div class="ek-contact-header text-center">
+        <span class="ek-tagline-blue">WE'RE HERE WHEN YOU'RE READY</span>
+        <h2 class="ek-section-title">
+          Want to <span class="ek-text-red">talk it through</span> before you order?
+        </h2>
+        <p class="ek-contact-subtitle">
+          Leave your details and we'll reach out the way that works best for
+          you.
+        </p>
+      </div>
+
+      <!-- Main Content Split -->
+      <div class="row align-items-start">
+        <!-- Left: Form -->
+        <div class="col-lg-6 col-md-12 ek-form-col">
+          <form class="ek-contact-form" onsubmit="event.preventDefault();">
+            <input
+              type="text"
+              class="ek-input"
+              placeholder="First Name*"
+              required
+            />
+            <input
+              type="email"
+              class="ek-input"
+              placeholder="Email*"
+              required
+            />
+            <input
+              type="tel"
+              class="ek-input"
+              placeholder="Contact Number*"
+              required
+            />
+
+            <div class="ek-radio-group">
+              <label class="ek-radio-label">
+                <input
+                  type="radio"
+                  name="contactType"
+                  value="showroom"
+                  checked
+                />
+                Visit Showroom
+              </label>
+              <label class="ek-radio-label">
+                <input type="radio" name="contactType" value="consult" />
+                Design Consult
+              </label>
+              <label class="ek-radio-label">
+                <input type="radio" name="contactType" value="callback" />
+                Callback
+              </label>
+            </div>
+
+            <button type="submit" class="ek-btn-submit">Get In Touch</button>
+
+            <p class="ek-form-disclaimer">
+              *Your details stay with us - no spam, ever. View <a href="#"
+                >Privacy Policy</a
+              >
+            </p>
+          </form>
+        </div>
+
+        <!-- Right: Options Info -->
+        <div class="col-lg-6 col-md-12 ek-info-col">
+          <div class="ek-info-item">
+            <div class="ek-info-icon">
+              <Image src={dresser} alt="dresser" />
+            </div>
+            <div class="ek-info-text">
+              <h4>VISIT A SHOWROOM</h4>
+              <p>
+                We'll confirm your nearest location and what to expect when you
+                arrive
+              </p>
+            </div>
+          </div>
+
+          <div class="ek-info-item">
+            <div class="ek-info-icon">
+              <Image src={design_services} alt="design_services" />
+            </div>
+            <div class="ek-info-text">
+              <h4>SCHEDULE FREE DESIGN CONSULT</h4>
+              <p>
+                A free session with one of our designer - Virtual or In-home
+              </p>
+            </div>
+          </div>
+
+          <div class="ek-info-item">
+            <div class="ek-info-icon">
+              <Image src={phone_callback} alt="phone_callback" />
+            </div>
+            <div class="ek-info-text">
+              <h4>REQUEST A CALLBACK</h4>
+              <p>Tell us when suits you and a real person will call</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ek-contact-section {
+    padding: 80px 0;
+    font-family: var(--ek-primary-font);
+    background-color: var(--ek-white);
+  }
+
+  .ek-contact-card {
+    background-color: #fdf8f8; /* Off-white with pink/red tint */
+    border-top: 4px solid var(--ek-primary-red);
+    border-bottom: 4px solid var(--ek-primary-red);
+    border-radius: 12px;
+    padding: 60px 80px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.04);
+  }
+
+  /* Header Styles */
+  .ek-contact-header {
+    margin-bottom: 50px;
+  }
+
+  .ek-tagline-blue {
+    display: inline-block;
+    background-color: #e6f3f5;
+    color: var(--ek-gray-tint-40);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0%;
+    line-height: 100%;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .ek-section-title {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0%;
+    color: var(--ek-heading-color);
+    margin-bottom: 12px;
+  }
+
+  .ek-text-red {
+    color: var(--ek-primary-red);
+  }
+
+  .ek-contact-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    color: var(--ek-gray-tint-40);
+    margin: 0;
+  }
+
+  /* Form Styles */
+  .ek-form-col {
+    padding-right: 40px;
+  }
+
+  .ek-contact-form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .ek-input {
+    width: 100%;
+    padding: 14px 20px;
+    border: 1px solid #ff9c9c; /* Faint red/pink border */
+    border-radius: 8px;
+    margin-bottom: 15px;
+    background-color: var(--ek-white);
+    font-size: 15px;
+    color: var(--ek-heading-color);
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .ek-input::placeholder {
+    color: var(--ek-gray-tint-60);
+    font-weight: 400;
+  }
+
+  .ek-input:focus {
+    border-color: var(--ek-primary-red);
+  }
+
+  .ek-radio-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff2f2;
+    padding: 14px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+
+  .ek-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--ek-gray-tint-40);
+    cursor: pointer;
+  }
+
+  .ek-radio-label input[type="radio"] {
+    accent-color: var(--ek-primary-red);
+    width: 16px;
+    height: 16px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .ek-btn-submit {
+    background-color: var(--ek-primary-red);
+    color: var(--ek-white);
+    border: none;
+    padding: 15px 0;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition:
+      background-color 0.2s,
+      transform 0.1s;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+
+  .ek-btn-submit:hover {
+    background-color: var(--ek-red-shade-25);
+  }
+
+  .ek-btn-submit:active {
+    transform: scale(0.99);
+  }
+
+  .ek-form-disclaimer {
+    font-size: 11px;
+    color: var(--ek-gray-tint-60);
+    text-align: center;
+    margin: 0;
+  }
+
+  .ek-form-disclaimer a {
+    color: var(--ek-gray-tint-60);
+    text-decoration: underline;
+  }
+
+  /* Right Side Info Options */
+  .ek-info-col {
+    padding-left: 40px;
+  }
+
+  .ek-info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .ek-info-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .ek-info-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(
+      --ek-primary-red
+    ); /* Controls SVG stroke color via currentColor */
+  }
+
+  .ek-info-icon svg {
+    width: 32px;
+    height: 32px;
+  }
+
+  .ek-info-text h4 {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--ek-primary-red);
+    margin: 0 0 6px 0;
+    letter-spacing: 0px;
+  }
+
+  .ek-info-text p {
+    font-size: 15px;
+    line-height: 150%;
+    color: var(--ek-gray-tint-40);
+    margin: 0;
+    max-width: 270px;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 991px) {
+    .ek-contact-card {
+      padding: 50px 40px;
+    }
+    .ek-form-col {
+      padding-right: 15px;
+      margin-bottom: 40px;
+    }
+    .ek-info-col {
+      padding-left: 15px;
+    }
+    .ek-radio-group {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ek-contact-card {
+      padding: 40px 20px;
+    }
+    .ek-section-title {
+      font-size: 28px;
+    }
+    .ek-contact-subtitle {
+      font-size: 16px;
+    }
+  }
+</style>

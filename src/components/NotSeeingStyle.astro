@@ -1,0 +1,159 @@
+---
+// src/components/NotSeeingStyle.astro
+import { Image } from "astro:assets";
+import imgKitchenBanner from "../assets/images/banner_kitchen.webp"; // Using a placeholder name, user will update
+---
+
+<section class="ek-not-seeing-style-section">
+  <div class="container">
+    <div class="ek-nss-card">
+      <div class="row g-0 align-items-stretch">
+        <!-- Left Side: Text Content -->
+        <div class="col-md-6 col-lg-5 ek-nss-text-col">
+          <div class="ek-nss-content">
+            <h2 class="ek-nss-title">Not seeing your style?</h2>
+            <p class="ek-nss-desc">
+              We carry dozens more across every<br />
+              finish and door profile.
+            </p>
+            <a href="#" class="ek-btn-view-all">View All Styles</a>
+          </div>
+        </div>
+
+        <!-- Right Side: Image -->
+        <div class="col-md-6 col-lg-7 ek-nss-img-col">
+          <Image
+            src={imgKitchenBanner}
+            alt="More kitchen styles"
+            class="ek-nss-image"
+            onerror="this.src='https://placehold.co/800x400/eeeeee/999999?text=Kitchen+Image'"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .ek-not-seeing-style-section {
+    padding: 60px 0;
+    font-family: var(--ek-primary-font);
+  }
+
+  .ek-nss-card {
+    background-color: var(--ek-soft-cream);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+    width: 100%;
+    height: 100%;
+    display: flex;
+  }
+
+  .ek-nss-card .row {
+    flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+
+  /* Text Column */
+  .ek-nss-text-col {
+    display: flex;
+    align-items: center;
+    padding: 0 40px 0 60px;
+  }
+
+  .ek-nss-content {
+    max-width: 400px;
+  }
+
+  .ek-nss-title {
+    color: var(--ek-primary-red);
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0%;
+    margin-bottom: 15px;
+  }
+
+  .ek-nss-desc {
+    color: var(--ek-gray-tint-40);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-bottom: 30px;
+  }
+
+  /* View All Button */
+  .ek-btn-view-all {
+    display: inline-block;
+    background-color: var(--ek-primary-red);
+    color: var(--ek-white);
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px 28px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition:
+      background-color 0.2s ease,
+      transform 0.1s ease;
+  }
+
+  .ek-btn-view-all:hover {
+    background-color: var(--ek-red-shade-25);
+    color: var(--ek-white);
+  }
+
+  .ek-btn-view-all:active {
+    transform: scale(0.98);
+  }
+
+  /* Image Column */
+  .ek-nss-img-col {
+    display: flex;
+  }
+
+  .ek-nss-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    /* Optional: If the image provided has some baked-in edges, object-fit wrapper ensures it fills the container elegantly. */
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 991px) {
+    .ek-nss-text-col {
+      padding: 0 30px;
+    }
+    .ek-nss-title {
+      font-size: 28px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ek-nss-card {
+      flex-direction: column;
+      height: auto;
+    }
+    .ek-nss-img-col {
+      height: 300px; /* Give the image a fixed height on mobile */
+    }
+    .ek-nss-text-col {
+      padding: 40px 20px;
+      text-align: center;
+      order: 2; /* Put text below image on mobile, or keep it 1 to have it above */
+    }
+    .ek-nss-img-col {
+      order: 1; /* Image on top is standard for mobile banners */
+    }
+    .ek-nss-content {
+      margin: 0 auto;
+    }
+    .ek-nss-desc br {
+      display: none; /* Let text flow naturally on mobile */
+    }
+  }
+</style>

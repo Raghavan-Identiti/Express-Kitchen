@@ -1,0 +1,134 @@
+	/* Base & Reset */
+	:root {
+		/* Primary Colors */
+		--ek-primary-red: #F20819;
+		--ek-black: #000000;
+		--ek-white: #FFFFFF;
+
+		/* Tints of Red (Lighter) */
+		--ek-red-tint-10: #F32F3D;
+		/* Soft UI accents */
+		--ek-red-tint-25: #F65A65;
+		/* Cards / banners */
+		--ek-red-tint-40: #F9858D;
+		/* Hover states */
+		--ek-red-tint-60: #FCB6BB;
+		/* Backgrounds */
+		--ek-red-tint-80: #FEE3E5;
+		/* Very light sections */
+
+		/* Shades of Red (Darker) */
+		--ek-red-shade-10: #D90716;
+		/* Primary CTA */
+		--ek-red-shade-25: #B80613;
+		/* Button hover */
+		--ek-red-shade-40: #96050F;
+		/* Strong emphasis */
+		--ek-red-shade-60: #6B040B;
+		/* Dark accents */
+		--ek-red-shade-80: #410207;
+		/* Rare / premium use */
+
+		/* Grays (Tints - text, UI, borders) */
+		--ek-gray-tint-10: #1A1A1A;
+		/* Headings */
+		--ek-gray-tint-25: #404040;
+		/* Body text */
+		--ek-gray-tint-40: #666666;
+		/* Secondary text */
+		--ek-gray-tint-60: #999999;
+		/* Muted labels */
+		--ek-gray-tint-80: #D9D9D9;
+		/* Dividers / lines */
+
+		/* Grays (Shades - Deeper blacks) */
+		--ek-gray-shade-premium: #191919;
+		--ek-gray-shade-depth: #050505;
+
+		/* Tertiary / Limited Use Colors */
+		--ek-soft-cream: #F6EBD6;
+		--ek-soft-blue: #A9D6E0;
+
+		/* Typography */
+		--ek-primary-font: 'Gilroy', system-ui, -apple-system, sans-serif;
+
+		/* Aliases from previous usages to avoid breaking anything */
+		--ek-volcano-flame: var(--ek-primary-red);
+		--ek-volcano-red: var(--ek-primary-red);
+		--ek-heading-color: var(--ek-gray-tint-10);
+		--ek-body-text: var(--ek-gray-tint-25);
+		--ek-btn-hover: var(--ek-red-shade-25);
+		--ek-border-divider: var(--ek-gray-tint-80);
+		--ek-light-pink: var(--ek-red-tint-80);
+	}
+
+	* {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	/* ===== Gilroy Font Family ===== */
+
+	@font-face {
+		font-family: "Gilroy";
+		src: url("../assets/fonts/Gilroy-Light.woff") format("woff");
+		font-weight: 300;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: "Gilroy";
+		src: url("../assets/fonts/Gilroy-Regular.woff") format("woff");
+		font-weight: 400;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: "Gilroy";
+		src: url("../assets/fonts/Gilroy-Medium.woff") format("woff");
+		font-weight: 500;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: "Gilroy";
+		src: url("../assets/fonts/Gilroy-Bold.woff") format("woff");
+		font-weight: 700;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	@font-face {
+		font-family: "Gilroy";
+		src: url("../assets/fonts/Gilroy-Heavy.woff") format("woff");
+		font-weight: 900;
+		font-style: normal;
+		font-display: swap;
+	}
+
+	body {
+		font-family: var(--ek-primary-font);
+		color: var(--ek-body-text);
+		background-color: var(--ek-white);
+		-webkit-font-smoothing: antialiased;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-family: var(--ek-primary-font);
+		color: var(--ek-heading-color);
+	}
+
+	img {
+		max-width: 100%;
+		height: auto;
+		display: block;
+	}

@@ -1,0 +1,252 @@
+---
+// src/components/Footer.astro
+import footer_108_logo from "../assets/images/footer_108_logo.svg";
+import ek_logo_square_red from "../assets/images/ek_logo_square_red.svg";
+import badge_nkba from "../assets/images/badge_nkba.svg";
+import badge_kcma from "../assets/images/badge_kcma.svg";
+import badge_carb2 from "../assets/images/badge_carb2.svg";
+import badge_a_plus from "../assets/images/badge_a_plus.svg";
+import card_amex from "../assets/images/card_amex.svg";
+import card_discover from "../assets/images/card_discover.svg";
+import card_mastercard from "../assets/images/card_mastercard.svg";
+import card_visa from "../assets/images/card_visa.svg";
+import badge_homeadvisor from "../assets/images/badge_homeadvisor.svg";
+import badge_bbb_a from "../assets/images/badge_bbb_a.svg";
+import { Image } from "astro:assets";
+---
+
+<footer class="ek-footer">
+  <div class="ek-footer-overlay"></div>
+  <div class="container ek-footer-container position-relative">
+    <div class="row align-items-end">
+      <!-- Left: Logo & Promise -->
+      <div class="col-lg-4 col-md-6 mb-4 mb-lg-0 text-center text-md-start">
+        <Image
+          src={footer_108_logo}
+          alt="108 Year Journey"
+          class="ek-footer-108-logo mb-3"
+          onerror="this.src='https://placehold.co/180x140/990000/ffffff?text=108+Year+Journey'"
+        />
+        <p class="ek-footer-promise mb-0">
+          Two families. Four generations.<br />
+          One promise: simplifying kitchens.
+        </p>
+      </div>
+
+      <!-- Center: Copyright -->
+      <div
+        class="col-lg-4 col-md-12 order-3 order-lg-2 text-center mt-4 mt-lg-0"
+      >
+        <p class="ek-footer-copyright mb-0">&copy; 2026 Express Kitchens.</p>
+      </div>
+
+      <!-- Right: Contact, Accreditations, Payments -->
+      <div class="col-lg-4 col-md-6 order-2 order-lg-3 text-center text-md-end">
+        <!-- Contact Block -->
+        <div
+          class="ek-footer-contact d-flex justify-content-center justify-content-md-end align-items-center gap-3 mb-5"
+        >
+          <Image
+            src={ek_logo_square_red}
+            alt="EK"
+            class="ek-square-logo"
+            onerror="this.src='https://placehold.co/50x50/ff0000/ffffff?text=EK'"
+          />
+          <div class="ek-contact-info text-start">
+            <p class="mb-0">18 Main Street, Bristol CT, 06010</p>
+            <p class="mb-0">www.expresskitchens.com</p>
+            <h3 class="mb-0 ek-phone">860-247-1000</h3>
+          </div>
+        </div>
+
+        <!-- Accreditations & Badges -->
+        <div
+          class="ek-footer-badges d-flex justify-content-center justify-content-md-end gap-3 mb-3"
+        >
+          <Image
+            src={badge_nkba}
+            alt="NKBA"
+            class="brand-badge"
+            onerror="this.src='https://placehold.co/60x30/333/fff?text=NKBA'"
+          />
+          <Image
+            src={badge_kcma}
+            alt="KCMA"
+            class="brand-badge"
+            onerror="this.src='https://placehold.co/40x30/333/fff?text=KCMA'"
+          />
+          <Image
+            src={badge_carb2}
+            alt="CARB2"
+            class="brand-badge"
+            onerror="this.src='https://placehold.co/70x30/333/fff?text=CARB2'"
+          />
+          <Image
+            src={badge_a_plus}
+            alt="A+ Rating"
+            class="brand-badge"
+            onerror="this.src='https://placehold.co/50x30/333/fff?text=A+'"
+          />
+        </div>
+
+        <!-- Payment cards -->
+        <div
+          class="ek-footer-cards d-flex justify-content-center justify-content-md-end gap-2 flex-wrap"
+        >
+          <Image
+            src={card_amex}
+            alt="Amex"
+            class="payment-card"
+            onerror="this.src='https://placehold.co/40x25/007bb6/fff?text=AMX'"
+          />
+          <Image
+            src={card_discover}
+            alt="Discover"
+            class="payment-card"
+            onerror="this.src='https://placehold.co/40x25/f47a20/fff?text=DSC'"
+          />
+          <Image
+            src={card_mastercard}
+            alt="MasterCard"
+            class="payment-card"
+            onerror="this.src='https://placehold.co/40x25/eb001b/fff?text=MC'"
+          />
+          <Image
+            src={card_visa}
+            alt="Visa"
+            class="payment-card"
+            onerror="this.src='https://placehold.co/40x25/142787/fff?text=VISA'"
+          />
+          <Image
+            src={badge_homeadvisor}
+            alt="HomeAdvisor"
+            class="payment-card"
+            onerror="this.src='https://placehold.co/90x25/f7941d/fff?text=HomeA'"
+          />
+          <Image
+            src={badge_bbb_a}
+            alt="BBB A+"
+            class="payment-card"
+            onerror="this.src='https://placehold.co/40x25/115a82/fff?text=BBB'"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ek-footer {
+    position: relative;
+    background-color: #410207f2; /* Deep maroon baseline */
+    /* Background image layer. User can place their footer bg in assets */
+    background-image: url("../assets/images/footer_bg.webp");
+    background-size: cover;
+    background-position: center;
+    color: var(--ek-white);
+    padding: 80px 0 80px;
+    font-family: var(--ek-primary-font);
+  }
+
+  /* Creates the red overlay mask shown in the image over the background kitchen */
+  .ek-footer-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      180deg,
+      rgba(76, 17, 20, 0.9) 0%,
+      rgba(76, 17, 20, 0.95) 100%
+    );
+    z-index: 1;
+  }
+
+  .ek-footer-container {
+    z-index: 2; /* Sits above the overlay */
+  }
+
+  /* Left Side */
+  .ek-footer-108-logo {
+    height: 160px; /* Adjust based on actual image dimensions */
+    width: auto;
+  }
+
+  .ek-footer-promise {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 150%;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  /* Center */
+  .ek-footer-copyright {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255);
+  }
+
+  /* Right Side */
+  .ek-square-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+  }
+
+  .ek-contact-info p {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .ek-phone {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--ek-white);
+    letter-spacing: -0.5px;
+    margin-top: 2px;
+  }
+
+  .brand-badge {
+    height: 30px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .payment-card {
+    height: 25px;
+    width: auto;
+    object-fit: contain;
+    border-radius: 3px;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 991px) {
+    .ek-footer {
+      padding: 50px 0 30px;
+    }
+
+    .ek-footer-108-logo {
+      height: 100px;
+    }
+
+    .ek-phone {
+      font-size: 20px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .ek-footer-contact {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .ek-contact-info.text-start {
+      text-align: center !important;
+    }
+
+    .ek-footer-promise {
+      margin-bottom: 40px;
+    }
+  }
+</style>

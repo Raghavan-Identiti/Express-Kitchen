@@ -1,0 +1,252 @@
+---
+// src/components/ProcessSteps.astro
+import EK_Cabinets from "../assets/videos/EK_Cabinets.webm";
+
+const steps = [
+  {
+    id: "01",
+    title: "Browse",
+    desc: "Filter by style, finish, and price - every cabinet you see is in stock and ready to ship, no surprises.",
+    theme: "red",
+  },
+  {
+    id: "02",
+    title: "Select",
+    desc: "Choose your style and finish - each line comes as a complete 10x10 assembled kitchen, ready to ship.",
+    theme: "dark",
+  },
+  {
+    id: "03",
+    title: "Order",
+    desc: "Check out online in a few minutes and we'll pull your order from warehouse the same day.",
+    theme: "red",
+  },
+  {
+    id: "04",
+    title: "Make Memories",
+    desc: "Your cabinets arrive fully assembled and at your door — in days, not months.",
+    theme: "dark",
+  },
+];
+---
+
+<section class="ek-process-section">
+  <div class="container ek-process-container">
+    <!-- Header -->
+    <div class="ek-process-header text-center">
+      <span class="ek-tagline">THE PROCESS</span>
+      <h2 class="ek-section-title">
+        From your first click to your new<br />
+        kitchen &ndash; <span class="ek-text-red">four simple steps.</span>
+      </h2>
+    </div>
+
+    <!-- Media / Arch Area Placeholder -->
+    <!-- The user mentioned they have videos for the middle door/dots. 
+         This wrapper is designed to house that media (like a transparent webm). -->
+    <div class="ek-process-media text-center">
+      <div class="ek-media-wrapper">
+        <!-- Placeholder for user's video -->
+        <video
+          class="ek-arch-video"
+          src={EK_Cabinets}
+          autoplay
+          muted
+          loop
+          playsinline
+          style="width: 100%; aspect-ratio: 16/7; object-fit: cover; border-radius: 50% 50% 0 0 / 100% 100% 0 0;"
+        >
+        </video>
+      </div>
+    </div>
+
+    <!-- 4 Steps Cards -->
+    <div class="row align-items-stretch justify-content-center ek-steps-row">
+      {
+        steps.map((step) => (
+          <div class="col-lg-3 col-md-6 col-12 mb-4">
+            <div class={`ek-step-card theme-${step.theme}`}>
+              <div class="ek-step-header">
+                <span class="ek-step-label">
+                  STEP <span class="ek-step-num">{step.id}</span>
+                </span>
+              </div>
+              <div class="ek-step-body">
+                <h4 class="ek-step-title">{step.title}</h4>
+                <p class="ek-step-desc">{step.desc}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .ek-process-section {
+    padding: 80px 0;
+    background-color: #fff7f7; /* Very light pink/cream background from image */
+    font-family: var(--ek-primary-font);
+  }
+
+  .ek-process-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Header Styles */
+  .ek-process-header {
+    margin-bottom: 40px;
+  }
+
+  .ek-tagline {
+    display: inline-block;
+    background-color: #e5edf0; /* Light frosty blue from design */
+    color: var(--ek-heading-color);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .ek-section-title {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0%;
+    color: var(--ek-heading-color);
+    margin: 0;
+  }
+
+  .ek-text-red {
+    color: var(--ek-primary-red);
+  }
+
+  /* Media Wrapper */
+  .ek-process-media {
+    position: relative;
+    margin-bottom: -50px; /* Pull the cards up slightly over the media if desired, or adjust */
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+  }
+
+  .ek-media-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .ek-arch-video {
+    /* If the background is baked in, this helps it blend. */
+    /* Wait, the transparent video would just sit on top. */
+    mix-blend-mode: multiply;
+  }
+
+  /* Cards Row */
+  .ek-steps-row {
+    position: relative;
+    z-index: 2;
+    margin-top: 40px;
+  }
+
+  /* Card Styles */
+  .ek-step-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--ek-white);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+  }
+
+  .ek-step-header {
+    background: var(--ek-white);
+    padding: 20px 24px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-top: 1px solid transparent;
+    border-left: 1px solid transparent;
+    border-right: 1px solid transparent;
+    border-bottom: none;
+  }
+
+  .ek-step-label {
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 120%;
+    letter-spacing: 5%;
+    color: var(--ek-heading-color);
+  }
+
+  .ek-step-num {
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    color: var(--ek-primary-red);
+  }
+
+  .ek-step-body {
+    flex-grow: 1;
+    padding: 30px 24px;
+    color: var(--ek-white);
+  }
+
+  .ek-step-title {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0%;
+    margin-bottom: 15px;
+    color: var(--ek-white);
+  }
+
+  .ek-step-desc {
+    font-size: 16px;
+    line-height: 140%;
+    font-weight: 400;
+    margin: 0;
+    color: var(--ek-white);
+  }
+
+  /* Red Theme */
+  .theme-red .ek-step-header {
+    border-color: var(--ek-red-tint-25);
+  }
+  .theme-red .ek-step-body {
+    background-color: var(--ek-red-tint-25);
+  }
+
+  /* Dark Theme */
+  .theme-dark .ek-step-header {
+    border-color: var(--ek-red-tint-25);
+  }
+  .theme-dark .ek-step-body {
+    background-color: var(
+      --ek-gray-tint-25
+    ); /* Dark grey from guideline/image */
+  }
+
+  @media (max-width: 991px) {
+    .ek-section-title {
+      font-size: 32px;
+    }
+    .ek-process-media {
+      margin-bottom: 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .ek-process-section {
+      padding: 50px 0;
+    }
+  }
+</style>

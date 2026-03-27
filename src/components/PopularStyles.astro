@@ -1,0 +1,520 @@
+---
+// src/components/PopularStyles.astro
+import badge_price_match from "../assets/images/badge-price-match.svg";
+import badge_finance from "../assets/images/badge-finance.svg";
+import { Image } from "astro:assets";
+
+import imgMero from "../assets/images/style_mero.webp";
+import imgDerry from "../assets/images/style_derry.webp";
+import imgAvon from "../assets/images/style_avon.webp";
+import imgTribeca from "../assets/images/style_tribeca.webp";
+import imgEden from "../assets/images/style_eden.webp";
+import imgManhattan from "../assets/images/style_manhattan.webp";
+import iconSaveMoney from "../assets/images/icon_save_money.svg";
+import iconHassleFree from "../assets/images/icon_hassle_free.svg";
+import iconCarb2 from "../assets/images/icon_carb2.svg";
+import iconReady from "../assets/images/icon_ready.svg";
+import iconSemiCustom from "../assets/images/icon_semi_custom.svg";
+import iconTruck from "../assets/images/ek_truck_icon.svg";
+import iconCart from "../assets/images/ek_shopping_cart.svg";
+
+const popularStyles = [
+  { img: imgMero, name: "MERO", highlight: "PAINTED WHITE", currentPrice: "3928", currentCents: "63", oldPrice: "4586", oldCents: "84", monthly: "40", leadTime: "3 Wks", desc: "Simple, honest, and built to last \u2013 the Mero shaker is the style that never goes out of fashion." },
+  { img: imgDerry, name: "DERRY", highlight: "PAINTED STRATUS", currentPrice: "4400", currentCents: "93", oldPrice: "5138", oldCents: "27", monthly: "67", leadTime: "3 Wks", desc: "Understated craftsmanship and honest value \u2014 the Derry shaker is the style that lets the rest of your kitchen shine." },
+  { img: imgAvon, name: "AVON", highlight: "PAINTED WHITE", currentPrice: "3989", currentCents: "55", oldPrice: "3840", oldCents: "50", monthly: "30", leadTime: "3 Wks", desc: "Clean lines, warm feel, and priced for real life \u2014 the Avon shaker delivers without compromise." },
+  { img: imgTribeca, name: "EM", highlight: "TRIBECA A", currentPrice: "4584", currentCents: "58", oldPrice: "3667", oldCents: "66", monthly: "48", leadTime: "16 Wks", desc: "Deep, textured, and built to take whatever a kitchen throws at it \u2014 a matte finish that feels as considered as it looks." },
+  { img: imgEden, name: "EM EDEN", highlight: "GREY WOOD", currentPrice: "4835", currentCents: "70", oldPrice: "3868", oldCents: "56", monthly: "67", leadTime: "16 Wks", desc: "Where clean lines meet lasting durability \u2014 Eden's sleek slab doors bring a quietly modern edge to any kitchen." },
+  { img: imgManhattan, name: "EV", highlight: "MANHATTAN PM", currentPrice: "4048", currentCents: "48", oldPrice: "3238", oldCents: "78", monthly: "42", leadTime: "16 Wks", desc: "Matte, minimal, and built to stay spotless \u2014 Manhattan's slab doors are modern simplicity at its best." }
+];
+
+const features = [
+  { icon: iconSaveMoney, label: "Save Money" },
+  { icon: iconHassleFree, label: "Hassle-Free" },
+  { icon: iconCarb2, label: "Carb2 Compliant" },
+  { icon: iconReady, label: "Ready to Install" },
+  { icon: iconSemiCustom, label: "Semi-Custom" }
+];
+---
+
+<section class="ek-popular-section">
+  <div class="container ek-popular-container">
+    
+    <!-- Header -->
+    <div class="ek-popular-header text-center">
+      <span class="ek-tagline-cream">MOST POPULAR STYLES</span>
+      <h2 class="ek-section-title">
+        Find the <span class="ek-text-red">one that feels like yours.</span>
+      </h2>
+      <p class="ek-popular-subtitle">
+        From framed classics to clean frameless designs,<br/>
+        Shop assembled cabinet styles our customers love most right now.
+      </p>
+      <p class="ek-popular-highlight-text">
+        Each cabinet features soft-close doors and drawers, customizable storage
+      </p>
+      
+      <div class="ek-header-badges">
+        <Image src={badge_price_match} alt="Price Match Guarantee" class="ek-badge-img" />
+        <Image src={badge_finance} alt="0% APR Finance" class="ek-badge-img" />
+      </div>
+    </div>
+
+    <!-- Filters Row -->
+    <div class="ek-filters-wrap d-flex flex-wrap align-items-center justify-content-center gap-3 gap-lg-4 mb-5">
+      <!-- Framed/Frameless Toggle -->
+      <div class="ek-type-toggle">
+        <button class="ek-toggle-btn active">Framed</button>
+        <button class="ek-toggle-btn">Frameless</button>
+      </div>
+      
+      <!-- Color Swatches -->
+      <div class="ek-color-swatches d-flex gap-2 align-items-center">
+        <div class="ek-swatch" style="background-color: #e8eceb;"></div>
+        <div class="ek-swatch" style="background-color: #ffffff; border: 1px solid #e0e0e0;"></div>
+        <div class="ek-swatch" style="background-color: #d1b46a;"></div>
+        <div class="ek-swatch" style="background-color: #bfa18f;"></div>
+        <div class="ek-swatch" style="background-color: #8c3b1a;"></div>
+        <div class="ek-swatch" style="background-color: #838d83;"></div>
+      </div>
+
+      <!-- Feature Tags -->
+      <div class="ek-feature-list d-flex flex-wrap gap-3 align-items-center">
+        {features.map(f => (
+          <div class="ek-feature-item">
+            <Image src={f.icon} alt={f.label} width={16} height={16} style="width:16px; height:16px; margin-right:10px;" />
+            <span>{f.label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="row g-5 ek-products-row">
+      {popularStyles.map((product) => (
+        <div class="col-lg-4 col-md-6 col-12">
+          <div class="ek-product-card">
+            <!-- Image -->
+            <div class="ek-product-img-wrap">
+              <Image src={product.img} alt={product.name} class="ek-product-img" />
+            </div>
+            
+            <!-- Details -->
+            <div class="ek-product-details">
+              <h3 class="ek-product-title">{product.name} <span class="ek-text-red">{product.highlight}</span></h3>
+              
+              <div class="ek-price-grid">
+                <!-- Prices -->
+                <div class="ek-price-block ek-price-primary">
+                  <div class="ek-price-current">
+                    <span class="currency">$</span>
+                    <span class="dollars">{product.currentPrice}</span>
+                    <span class="cents">{product.currentCents}</span>
+                  </div>
+                  <div class="ek-price-old">
+                    <span class="currency">$</span>
+                    <span class="dollars">{product.oldPrice}</span>
+                    <span class="cents">{product.oldCents}</span>
+                  </div>
+                </div>
+                
+                <!-- Monthly Price -->
+                <div class="ek-price-block ek-price-monthly">
+                  <div class="as-low">As Low As</div>
+                  <div class="monthly-val">
+                    <span class="currency-small">$</span>
+                    <span class="dollars-small">{product.monthly}</span>
+                    <span class="cents-small">59</span>
+                    <span class="per-month">/Month</span>
+                  </div>
+                </div>
+                
+                <!-- Lead Time -->
+                <div class="ek-price-block ek-price-lead">
+                  <Image src={iconTruck} alt="Delivery" class="truck-icon" width={24} height={24} />
+                  <span>{product.leadTime}</span>
+                </div>
+              </div>
+
+              <p class="ek-product-desc">{product.desc}</p>
+              
+              <button class="ek-btn-shop">
+                <Image src={iconCart} alt="Cart" class="cart-icon" width={18} height={18} /> 
+                Shop Now
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Footer Note -->
+    <div class="ek-popular-footer mt-5 text-start">
+      <p>*Note: Based on a standard 10x10 kitchen. Price reflects a fixed cabinet selection - contact us to build a custom configuration.</p>
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ek-popular-section {
+    padding: 80px 0;
+    background-color: var(--ek-white);
+    font-family: var(--ek-primary-font);
+  }
+
+  .ek-popular-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Header */
+  .ek-popular-header {
+    margin-bottom: 40px;
+  }
+
+  .ek-tagline-cream {
+    display: inline-block;
+    background-color: var(--ek-soft-cream);
+    color: var(--ek-gray-tint-25);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .ek-section-title {
+    font-size: 35px;
+    font-weight: 700;
+    letter-spacing: 0%;
+    line-height: 120%;
+    color: var(--ek-heading-color);
+    margin-bottom: 20px;
+  }
+
+  .ek-text-red {
+    color: var(--ek-primary-red);
+  }
+
+  .ek-popular-subtitle {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%  ;
+    color: var(--ek-gray-tint-40);
+    margin-bottom: 15px;
+  }
+
+  .ek-popular-highlight-text {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: var(--ek-red-tint-40);
+    margin-bottom: 20px;
+  }
+
+  .ek-header-badges {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .ek-badge-img {
+    height: 50px;
+    width: auto;
+  }
+
+  /* Filters Row */
+  .ek-filters-wrap {
+    border-radius: 100px;
+    padding: 10px 20px;
+  }
+
+  .ek-type-toggle {
+    display: flex;
+    background: var(--ek-white);
+    border-radius: 30px;
+    padding: 8px 20px;
+    background-color: #FFF9F9;
+    overflow: hidden;
+  }
+
+  .ek-toggle-btn {
+    border: none;
+    background: transparent;
+    padding: 8px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: -2%;
+    color: var(--ek-gray-tint-40);
+    transition: all 0.2s;''
+  }
+
+  .ek-toggle-btn.active {
+    background: #fff;
+    color: var(--ek-gray-tint-25);
+    border: 1px solid var(--ek-red-tint-10);
+    border-radius: 30px;
+    box-shadow: 0px 4.63px 28.95px 0px #0000001F;
+
+  }
+
+  .ek-color-swatches {
+    display: flex;
+    gap: 10px;
+    background-color: #FFF9F9;
+    padding: 8px 20px;
+    border-radius: 30px;
+  }
+
+  .ek-swatch {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+
+  .ek-feature-list {
+    display: flex;
+    gap: 10px;
+    background-color: #fff;
+    border: 1px solid var(--ek-red-tint-80);
+    padding: 8px 20px;
+    border-radius: 30px;
+  }
+
+  .ek-feature-item {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ek-gray-tint-40);
+  }
+
+  /* Product Cards */
+  .ek-product-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background: var(--ek-white);
+  }
+
+  .ek-product-img-wrap {
+    width: 100%;
+    aspect-ratio: 4/3;
+    overflow: hidden;
+    margin-bottom: 15px;
+    /* Soft shadow or background if image is transparent, but these look like full photos */
+    background: #f5f5f5; 
+  }
+
+  .ek-product-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .ek-product-card:hover .ek-product-img {
+    transform: scale(1.03);
+  }
+
+  .ek-product-details {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+
+  .ek-product-title {
+    font-size: 23px;
+    font-weight: 700;
+    line-height: 100%;
+    letter-spacing:0%;
+    color: var(--ek-heading-color);
+    margin: 15px 0px 25px;
+    text-transform: uppercase;
+  }
+
+  /* Price Grid */
+  .ek-price-grid {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--ek-red-tint-40);
+    background-color: #FDF8F8;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    width: fit-content;
+  }
+
+  .ek-price-block {
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid var(--ek-red-tint-40);
+  }
+  .ek-price-block:last-child {
+    border-right: none;
+  }
+
+  /* Primary Prices (Current + Old) */
+  .ek-price-primary {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding: 8px 16px;
+  }
+
+  .ek-price-current {
+    color: var(--ek-primary-red);
+    font-weight: 800;
+    display: flex;
+    align-items: flex-start;
+  }
+  .ek-price-current .currency { font-size: 14px; margin-top: -2px; font-weight: 700; color: var(--ek-primary-red); }
+  .ek-price-current .dollars { font-size: 23px; line-height: 1; font-weight: 700; letter-spacing: -1px; color: var(--ek-primary-red); }
+  .ek-price-current .cents { font-size: 16px; margin-top: -3px; font-weight: 700; color: var(--ek-primary-red); }
+
+  .ek-price-old {
+    color: #D4D4D4;
+    text-decoration: line-through;
+    text-decoration-thickness: 1.5px;
+    font-weight: 500;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 6px;
+  }
+  .ek-price-old .currency { font-size: 14px; margin-top: 2px; color: #D4D4D4; }
+  .ek-price-old .dollars { font-size: 23px; line-height: 1; letter-spacing: -0.5px; color: #D4D4D4; }
+  .ek-price-old .cents { font-size: 14px; margin-top: 2px; color: #D4D4D4; }
+
+  /* Monthly Price */
+  .ek-price-monthly {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 6px 16px;
+  }
+  .ek-price-monthly .as-low {
+    color: var(--ek-red-tint-40);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin-bottom: 2px;
+  }
+  .monthly-val {
+    color: var(--ek-red-tint-40);
+    display: flex;
+    align-items: flex-start;
+  }
+  .monthly-val .currency-small { font-size: 10px; margin-top: -2px; color: var(--ek-red-tint-40); }
+  .monthly-val .dollars-small { font-size: 13px; font-weight: 500; line-height: 1; color: var(--ek-red-tint-40); }
+  .monthly-val .cents-small { font-size: 10px; margin-top: -3px; color: var(--ek-red-tint-40); }
+  .monthly-val .per-month { font-size: 14px; font-weight: 400; margin-left: 0px; align-self: flex-end; line-height: 1; color: var(--ek-red-tint-40); }
+
+  /* Lead Time */
+  .ek-price-lead {
+    color: var(--ek-gray-tint-25);
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 0%;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    /* padding: 8px 16px; */
+  }
+  .truck-icon {
+    width: 24px;
+    height: auto;
+  }
+
+  /* Description */
+  .ek-product-desc {
+    font-size: 14px;
+    line-height: 150%;
+    letter-spacing: 0%;
+    color: var(--ek-gray-tint-40);
+    margin-bottom: 25px;
+    flex-grow: 1;
+  }
+
+  /* Shop Button */
+  .ek-btn-shop {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background-color: var(--ek-red-shade-60); /* Deep maroon */
+    color: var(--ek-white);
+    font-family: var(--ek-primary-font);
+    font-size: 18px;
+    font-weight: 500;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 160px;
+  }
+  
+  .ek-btn-shop:hover {
+    background-color: var(--ek-primary-red);
+  }
+
+  .cart-icon {
+    width: 18px;
+    height: auto;
+  }
+
+  /* Footer Note */
+  .ek-popular-footer p {
+    font-size: 12px;
+    color: var(--ek-gray-tint-40);
+    margin: 0;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 1399px) {
+    .ek-price-grid {
+      flex-wrap: wrap;
+      justify-content: center;
+      border-radius: 12px;
+      width: 100%;
+    }
+    .ek-price-block {
+      border-right: none;
+      border-bottom: 1px solid var(--ek-red-tint-40);
+      width: 100%;
+    }
+    .ek-price-block:last-child {
+      border-bottom: none;
+    }
+    .ek-price-primary {
+      justify-content: center;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .ek-section-title {
+      font-size: 30px;
+    }
+    .ek-filters-wrap {
+      flex-direction: column;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .ek-feature-list {
+      margin-left: 0;
+      justify-content: center;
+    }
+  }
+</style>

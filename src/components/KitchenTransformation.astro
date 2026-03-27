@@ -1,0 +1,444 @@
+---
+// src/components/KitchenTransformation.astro
+import beforeImage from "../assets/images/before_img.webp";
+import afterImage from "../assets/images/after_img.webp";
+import slider_icon from "../assets/images/slider-icon.svg";
+import { Image } from "astro:assets";
+---
+
+<section class="kitchen-transformation">
+  <div class="container--narrow">
+    <div class="transformation-header">
+      <span class="transformation-tagline">THE DIFFERENCE IT MAKES</span>
+      <h2 class="transformation-title">
+        This is what <span class="highlight">changing your kitchen</span> actually
+        changes.
+      </h2>
+    </div>
+
+    <div class="slider-wrapper">
+      <div class="slider-container" id="kitchen-slider-container">
+        <div class="before-image">
+          <Image src={beforeImage} alt="Before Image" />
+        </div>
+        <div class="after-image">
+          <Image src={afterImage} alt="After Image" />
+        </div>
+        <div class="slider-handle" id="sliderHandle"></div>
+        <div class="slider-line">
+          <div class="pulse-container">
+            <Image src={slider_icon} alt="Slider Handle" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="transformation-footer">
+      <div class="footer-block footer-before">
+        <span class="footer-label">BEFORE</span>
+        <p class="footer-text">The kitchen you've been apologising for.</p>
+      </div>
+      <div class="footer-center">
+        <p class="footer-promo">An Express Kitchens transformation.</p>
+      </div>
+      <div class="footer-block footer-after">
+        <span class="footer-label">AFTER</span>
+        <p class="footer-text">The kitchen you can't wait to show people.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .kitchen-transformation {
+    padding: 80px 0;
+    text-align: center;
+    background-color: var(--ek-white);
+    font-family: var(--ek-primary-font);
+  }
+
+  .kitchen-transformation .container--narrow {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .kitchen-transformation .transformation-header {
+    margin-bottom: 50px;
+  }
+
+  .kitchen-transformation .transformation-tagline {
+    display: inline-block;
+    background-color: var(--ek-red-tint-80);
+    color: var(--ek-primary-red);
+    padding: 2px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .kitchen-transformation .transformation-title {
+    font-size: 42px;
+    font-weight: 800;
+    line-height: 1.1;
+    color: var(--ek-heading-color);
+    margin: 0;
+  }
+
+  .kitchen-transformation .transformation-title .highlight {
+    color: var(--ek-primary-red);
+  }
+
+  .kitchen-transformation .slider-wrapper {
+    position: relative;
+    margin-bottom: 40px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .kitchen-transformation .slider-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+  }
+
+  .kitchen-transformation .before-image,
+  .kitchen-transformation .after-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .kitchen-transformation .before-image img,
+  .kitchen-transformation .after-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .kitchen-transformation .before-text,
+  .kitchen-transformation .after-text {
+    position: absolute;
+    font-family: var(--ek-primary-font);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ek-gray-tint-10);
+    z-index: 4;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.62);
+    border-radius: 0.3rem;
+    letter-spacing: 2px;
+    transition: opacity 0.3s ease-in-out;
+    top: 20px;
+    text-transform: uppercase;
+  }
+
+  .kitchen-transformation .before-text {
+    left: 20px;
+    z-index: 5;
+  }
+
+  .kitchen-transformation .after-text {
+    right: 20px;
+    z-index: 3;
+  }
+
+  .kitchen-transformation .before-image {
+    clip-path: inset(0 50% 0 0);
+    z-index: 2;
+  }
+
+  .kitchen-transformation .after-image {
+    clip-path: inset(0 0 0 50%);
+    z-index: 1;
+  }
+
+  .kitchen-transformation .slider-handle {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 3px;
+    height: 100%;
+    background-color: var(--ek-white);
+    cursor: col-resize;
+    z-index: 10;
+    transform: translateX(-50%);
+  }
+
+  .kitchen-transformation .slider-handle::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 40px;
+    height: 100%;
+    transform: translateX(-50%);
+    cursor: col-resize;
+  }
+
+  .kitchen-transformation .slider-line {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 11;
+    transform: translateX(-50%);
+    pointer-events: none;
+  }
+
+  .kitchen-transformation .pulse-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 42px;
+    height: 42px;
+    background-color: var(--ek-white);
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: auto;
+    cursor: col-resize;
+    z-index: 12;
+  }
+
+  .kitchen-transformation .pulse-container img {
+    position: relative;
+    z-index: 4;
+    width: 20px;
+    height: auto;
+    display: block;
+  }
+
+  .kitchen-transformation .transformation-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    text-align: left;
+    padding-top: 10px;
+  }
+
+  .kitchen-transformation .footer-block {
+    flex: 1;
+  }
+
+  .kitchen-transformation .footer-label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: var(--ek-gray-tint-60);
+    margin-bottom: 12px;
+  }
+
+  .kitchen-transformation .footer-text {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    color: var(--ek-body-text);
+    margin: 0;
+    max-width: 250px;
+  }
+
+  .kitchen-transformation .footer-before {
+    border-bottom: 1.5px solid var(--ek-red-tint-80);
+    padding-bottom: 15px;
+  }
+
+  .kitchen-transformation .footer-after {
+    border-bottom: 1.5px solid var(--ek-gray-tint-60);
+    padding-bottom: 15px;
+    text-align: right;
+  }
+
+  .kitchen-transformation .footer-after .footer-text {
+    margin-left: auto;
+  }
+
+  .kitchen-transformation .footer-center {
+    flex: 1.2;
+    text-align: center;
+    padding-top: 35px;
+  }
+
+  .kitchen-transformation .footer-promo {
+    color: var(--ek-primary-red);
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 100%;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .kitchen-transformation {
+      padding: 50px 0;
+    }
+
+    .kitchen-transformation .transformation-title {
+      font-size: 30px;
+    }
+
+    .kitchen-transformation .transformation-footer {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 40px;
+    }
+
+    .kitchen-transformation .footer-block {
+      width: 100%;
+    }
+
+    .kitchen-transformation .footer-block .footer-text {
+      margin: 0 auto;
+    }
+
+    .kitchen-transformation .footer-after {
+      text-align: center;
+    }
+
+    .kitchen-transformation .footer-center {
+      order: 3;
+      padding-top: 0;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    function initKitchenSlider() {
+      const sliderContainer = document.querySelector(
+        "#kitchen-slider-container",
+      ) as HTMLElement | null;
+      const sliderHandle = document.querySelector(
+        "#sliderHandle",
+      ) as HTMLElement | null;
+      const sliderLine = document.querySelector(
+        ".slider-line",
+      ) as HTMLElement | null;
+      const beforeImage = document.querySelector(
+        ".before-image",
+      ) as HTMLElement | null;
+      const afterImage = document.querySelector(
+        ".after-image",
+      ) as HTMLElement | null;
+      const pulseContainer = document.querySelector(
+        ".pulse-container",
+      ) as HTMLElement | null;
+
+      if (
+        !sliderContainer ||
+        !sliderHandle ||
+        !sliderLine ||
+        !beforeImage ||
+        !afterImage
+      )
+        return;
+
+      let isDragging = false;
+
+      const initializeSlider = () => {
+        sliderHandle.style.transition = "left 0.3s ease";
+        sliderLine.style.transition = "left 0.3s ease";
+        sliderHandle.style.left = "50%";
+        sliderLine.style.left = "50%";
+        beforeImage.style.clipPath = "inset(0 50% 0 0)";
+        afterImage.style.clipPath = "inset(0 0 0 50%)";
+      };
+
+      const moveSlider = (clientX: any) => {
+        const containerRect = sliderContainer.getBoundingClientRect();
+        let offsetX = clientX - containerRect.left;
+
+        if (offsetX < 0) offsetX = 0;
+        if (offsetX > containerRect.width) offsetX = containerRect.width;
+
+        const percentage = (offsetX / containerRect.width) * 100;
+
+        sliderHandle.style.left = percentage + "%";
+        sliderLine.style.left = percentage + "%";
+        beforeImage.style.clipPath = "inset(0 " + (100 - percentage) + "% 0 0)";
+        afterImage.style.clipPath = "inset(0 0 0 " + percentage + "%)";
+      };
+
+      const startDragging = (e: any) => {
+        isDragging = true;
+        sliderHandle.style.transition = "none";
+        sliderLine.style.transition = "none";
+        if (e.cancelable) e.preventDefault();
+      };
+
+      const stopDragging = () => {
+        if (isDragging) {
+          isDragging = false;
+          sliderHandle.style.transition = "left 0.3s ease";
+          sliderLine.style.transition = "left 0.3s ease";
+        }
+      };
+
+      sliderHandle.addEventListener("mousedown", startDragging);
+      sliderLine.addEventListener("mousedown", startDragging);
+      if (pulseContainer)
+        pulseContainer.addEventListener("mousedown", startDragging);
+
+      window.addEventListener("mousemove", (event) => {
+        if (isDragging) moveSlider(event.clientX);
+      });
+
+      window.addEventListener("mouseup", stopDragging);
+
+      sliderHandle.addEventListener("touchstart", startDragging, {
+        passive: false,
+      });
+      sliderLine.addEventListener("touchstart", startDragging, {
+        passive: false,
+      });
+      if (pulseContainer)
+        pulseContainer.addEventListener("touchstart", startDragging, {
+          passive: false,
+        });
+
+      window.addEventListener(
+        "touchmove",
+        (event) => {
+          if (isDragging) moveSlider(event.touches[0].clientX);
+        },
+        { passive: false },
+      );
+
+      window.addEventListener("touchend", stopDragging);
+
+      initializeSlider();
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initKitchenSlider);
+    } else {
+      initKitchenSlider();
+    }
+  })();
+</script>

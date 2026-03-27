@@ -1,0 +1,251 @@
+---
+// homepage.astro
+import ek_hero_video from "../assets/videos/ek_hero_video.webm";
+import badge_price_match from "../assets/images/badge-price-match.svg";
+import badge_finance from "../assets/images/badge-finance.svg";
+import { Image } from "astro:assets";
+
+import Counter from "../components/Counter.astro";
+import ProcessSteps from "../components/ProcessSteps.astro";
+import PopularStyles from "../components/PopularStyles.astro";
+import KitchenTransformation from "../components/KitchenTransformation.astro";
+import Testimonials from "../components/Testimonials.astro";
+import NotSeeingStyle from "../components/NotSeeingStyle.astro";
+import FAQ from "../components/FAQ.astro";
+import ContactSection from "../components/ContactSection.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<style>
+  .ek-container {
+    max-width: 1320px;
+    margin: 0 auto;
+  }
+
+  /* Hero Section */
+  .ek-hero {
+    padding: 40px 0 40px;
+    background-color: var(--ek-white);
+  }
+
+  .ek-hero-title {
+    font-family: var(--ek-primary-font);
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 100%;
+    letter-spacing: 0%;
+    color: var(--ek-heading-color);
+    max-width: 600px;
+    margin-bottom: 24px;
+  }
+
+  .ek-text-red {
+    color: var(--ek-primary-red);
+  }
+
+  .ek-hero-desc {
+    font-family: var(--ek-primary-font);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: 0%;
+    color: var(--ek-body-text);
+    margin-bottom: 32px;
+  }
+
+  /* Pills */
+  .ek-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 40px;
+  }
+
+  .ek-pill {
+    padding: 4px 16px;
+    border-radius: 400px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--ek-heading-color);
+  }
+
+  .ek-pill-cream {
+    background-color: var(--ek-soft-cream);
+  }
+  .ek-pill-blue {
+    background-color: var(--ek-soft-blue);
+  }
+  .ek-pill-pink {
+    background-color: var(--ek-light-pink);
+  }
+
+  /* Actions */
+  .ek-hero-actions {
+    margin-bottom: 48px;
+  }
+
+  .ek-btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--ek-red-shade-10);
+    color: var(--ek-white);
+    padding: 0.65rem 1.5rem;
+    border-radius: 6px;
+    font-family: var(--ek-primary-font);
+    font-weight: 400;
+    font-size: 18px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .ek-btn-primary:hover {
+    background-color: var(--ek-red-shade-25);
+  }
+
+  /* Trust Badges - Placeholders matching the shape */
+  .ek-trust-badges {
+    display: flex;
+    gap: 16px;
+  }
+
+  .ek-badge {
+    width: 60px;
+    height: 70px;
+    background-color: var(--ek-white);
+    border: 1px solid var(--ek-border-divider);
+    border-radius: 4px; /* Adjust if badges are different shape */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    text-align: center;
+    position: relative;
+    /* Giving it a shield-like appearance as a placeholder */
+    clip-path: polygon(50% 100%, 100% 80%, 100% 0, 0 0, 0 80%);
+    background: var(--ek-white);
+    border: 2px solid var(--ek-gray-tint-80);
+  }
+
+  /* Optional subtle placeholder graphic */
+  .ek-badge::before {
+    content: "";
+    display: block;
+    width: 24px;
+    height: 24px;
+    background: var(--ek-gray-tint-60);
+    border-radius: 50%;
+    margin-bottom: 4px;
+  }
+
+  /* Media Column */
+  .ek-hero-img-wrapper {
+    position: relative;
+    padding: 8px;
+  }
+
+  .ek-hero-video {
+    width: 100%;
+    height: 100%;
+    min-width: 750px;
+    min-height: 540px;
+    outline: 5px solid white;
+    outline-offset: -5px;
+  }
+
+  /* Responsive overrides (Bootstrap handles mostly everything now) */
+  @media (max-width: 991px) {
+    .ek-hero {
+      padding: 60px 0;
+    }
+
+    .ek-hero-title {
+      font-size: 36px;
+    }
+
+    .ek-hero-media {
+      margin-top: 3rem;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .ek-hero-title {
+      font-size: 32px;
+    }
+
+    .ek-hero-desc {
+      font-size: 16px;
+    }
+  }
+</style>
+
+<section class="ek-hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <!-- Left Content -->
+      <div class="col-lg-6 col-md-12">
+        <div class="ek-hero-content pe-lg-4">
+          <h1 class="ek-hero-title">
+            <span class="ek-text-red">Online Assembled Cabinets,</span><br />
+            minus the gamble.
+          </h1>
+
+          <p class="ek-hero-desc">
+            The kitchen you've always pictured, without<br /> the stress, the wait,
+            or the price you were dreading.
+          </p>
+
+          <div class="ek-pills">
+            <span class="ek-pill ek-pill-cream">Thoughtfully designed</span>
+            <span class="ek-pill ek-pill-blue">Robotically Built</span>
+            <span class="ek-pill ek-pill-pink">Expertly Installed</span>
+          </div>
+
+          <div class="ek-hero-actions">
+            <a href="#" class="ek-btn-primary">Shop Assembled Cabinets</a>
+          </div>
+
+          <!-- Placeholders for Trust Badges -->
+          <div class="ek-trust-badges">
+            <!-- Using img tags but with clear alt text since actual images are needed -->
+            <Image
+              src={badge_price_match}
+              alt="Price Match Guarantee"
+              class="ek-badge-img"
+              onerror="this.style.display='none'"
+            />
+            <Image
+              src={badge_finance}
+              alt="Avail 0% APR Finance"
+              class="ek-badge-img"
+              onerror="this.style.display='none'"
+            />
+          </div>
+        </div>
+
+        <!-- Right Media -->
+      </div>
+      <div
+        class="col-lg-6 col-md-12 d-flex align-items-start justify-content-center"
+      >
+        <div class="ek-hero-img-wrapper">
+          <video src={ek_hero_video} class="ek-hero-video" autoplay muted loop
+          ></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Counter />
+<KitchenTransformation />
+<Testimonials />
+<ProcessSteps />
+<PopularStyles />
+<NotSeeingStyle />
+<FAQ />
+<ContactSection />
+<Footer />

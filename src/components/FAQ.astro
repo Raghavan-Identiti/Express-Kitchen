@@ -1,0 +1,283 @@
+---
+// src/components/FAQ.astro
+
+const faqs = [
+  {
+    question: "Difference between assembled and RTA cabinets \u2014 and why does it matter?",
+    answer: "RTA (ready-to-assemble) cabinets ship flat and require you to build each cabinet before installation \u2014 that's 45 minutes or more per cabinet. Express Kitchens assembled cabinets arrive fully built, doors on and drawers in, ready to go straight to your walls. No tools, no instructions, no lost weekend."
+  },
+  {
+    question: "What are the cabinets actually made from?",
+    answer: "Our cabinets are constructed from premium materials including solid wood frames, durable plywood boxes, and high-quality MDF or HDF for painted doors to ensure a smooth, lasting finish resistant to warping."
+  },
+  {
+    question: "Are the cabinets durable enough for everyday use?",
+    answer: "Absolutely. Our cabinets undergo rigorous durability testing to ensure they can withstand the demands of a busy household, resisting scratches, moisture, and daily wear-and-tear."
+  },
+  {
+    question: "Do the doors and drawers come with soft close?",
+    answer: "Yes, every single cabinet comes standard with premium soft-close door hinges and full-extension soft-close drawer glides at no extra cost."
+  },
+  {
+    question: "Can I see the cabinets before I order?",
+    answer: "We highly recommend it! You can order physical sample doors directly to your home to see the exact finish and quality in your own lighting before making a full purchase."
+  },
+  {
+    question: "Do you offer customization options?",
+    answer: "We offer semi-custom sizing and a variety of organizational inserts (like pull-out trash cans, spice racks, and roll-out trays) to tailor your assembled kitchen specifically to your needs."
+  },
+  {
+    question: "How quickly will my cabinets arrive?",
+    answer: "Since our cabinets are fully stocked, standard orders process and leave our warehouse in a matter of days. You can generally expect delivery within a few short weeks, compared to months for traditional custom cabinets."
+  },
+  {
+    question: "What happens if something arrives damaged?",
+    answer: "We stand behind our products fully. If any piece arrives damaged from transit, simply contact our support team within 48 hours of delivery and we will expedite a replacement part to you immediately."
+  },
+  {
+    question: "What warranty do the cabinets come with?",
+    answer: "All of our assembled cabinets are backed by a comprehensive limited lifetime warranty, guaranteeing them against manufacturer defects in materials and workmanship under normal use."
+  },
+  {
+    question: "Do you offer financing?",
+    answer: "Yes! We offer flexible financing options including 0% APR to qualified buyers, allowing you to split your new kitchen investment into easy, predictable monthly payments."
+  }
+];
+---
+
+<section class="ek-faq-section">
+  <div class="container ek-faq-container">
+    
+    <!-- Header -->
+    <div class="ek-faq-header text-center">
+      <span class="ek-tagline-cream">GOOD QUESTIONS</span>
+      <h2 class="ek-section-title">
+        Your questions, <span class="ek-text-red">answered honestly.</span>
+      </h2>
+    </div>
+
+    <!-- Accordion Wrapper -->
+    <div class="ek-faq-accordion" id="faqAccordion">
+      {faqs.map((faq, index) => (
+        <div class={`ek-faq-item ${index === 0 ? 'active' : ''}`}>
+          <button class="ek-faq-question" aria-expanded={index === 0 ? "true" : "false"}>
+            <span class="ek-faq-text">{faq.question}</span>
+            <span class="ek-faq-icon"></span> <!-- CSS handles + and - -->
+          </button>
+          <div class="ek-faq-answer-wrapper" style={index === 0 ? "" : "max-height: 0;"}>
+            <div class="ek-faq-answer">
+              {faq.answer}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .ek-faq-section {
+    padding: 80px 0;
+    background-color: var(--ek-white);
+    font-family: var(--ek-primary-font);
+  }
+
+  .ek-faq-container {
+    max-width: 900px; /* Kept narrow for optimal reading width on FAQs */
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  /* Header */
+  .ek-faq-header {
+    margin-bottom: 50px;
+  }
+
+  .ek-tagline-cream {
+    display: inline-block;
+    background-color: var(--ek-soft-cream);
+    color: var(--ek-gray-tint-25);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 100%;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+
+  .ek-section-title {
+    font-size: 35px;
+    font-weight: 700;
+    line-height: 120%;
+    color: var(--ek-heading-color);
+    margin: 0;
+  }
+
+  .ek-text-red {
+    color: var(--ek-primary-red);
+  }
+
+  /* Accordion Item */
+  .ek-faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ek-faq-item {
+    background-color: #F8F8F8; /* Subtle light gray */
+    border-radius: 8px;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+  }
+
+  /* Active State matches the image perfectly (soft pinkish background) */
+  .ek-faq-item.active {
+    background-color: #FFF9F9;
+  }
+
+  /* Question Button */
+  .ek-faq-question {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 20px 24px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--ek-heading-color);
+  }
+
+  .ek-faq-text {
+    font-size: 21px;
+    font-weight: 700;
+    line-height: 140%;
+    letter-spacing: 0%;
+    padding-right: 20px;
+    color: var(--ek-heading-color);
+  }
+
+  /* The Plus / Minus Icon */
+  .ek-faq-icon {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+  }
+
+  .ek-faq-icon::before,
+  .ek-faq-icon::after {
+    content: "";
+    position: absolute;
+    background-color: var(--ek-gray-tint-40);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+  }
+
+  /* Horizontal line */
+  .ek-faq-icon::before {
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    margin-top: -1px;
+  }
+
+  /* Vertical line */
+  .ek-faq-icon::after {
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    margin-left: -1px;
+  }
+
+  /* Active Icon state (Turns into a red minus) */
+  .ek-faq-item.active .ek-faq-icon::before {
+    background-color: var(--ek-primary-red);
+  }
+
+  .ek-faq-item.active .ek-faq-icon::after {
+    transform: rotate(90deg);
+    background-color: var(--ek-primary-red);
+  }
+
+  /* Answer Wrapper */
+  .ek-faq-answer-wrapper {
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+  }
+
+  .ek-faq-answer {
+    padding: 0 24px 24px 24px;
+    font-size: 16px;
+    line-height: 140%;
+    letter-spacing: 0%;
+    color: var(--ek-gray-tint-40);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .ek-section-title {
+      font-size: 28px;
+    }
+    .ek-faq-text {
+      font-size: 15px;
+    }
+  }
+</style>
+
+<script>
+  (function() {
+    function initFAQ() {
+      const faqItems = document.querySelectorAll('.ek-faq-item');
+      
+      if (!faqItems.length) return;
+
+      // Ensure the initially active item has its height calculated
+      faqItems.forEach(item => {
+        const wrapper = item.querySelector('.ek-faq-answer-wrapper') as HTMLElement;
+        if (item.classList.contains('active') && wrapper) {
+          wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+        }
+      });
+
+      faqItems.forEach(item => {
+        const button = item.querySelector('.ek-faq-question');
+        const wrapper = item.querySelector('.ek-faq-answer-wrapper') as HTMLElement;
+
+        if (button && wrapper) {
+          button.addEventListener('click', () => {
+            const isActive = item.classList.contains('active');
+
+            // Close all items first (optional: if you want an accordion that only allows one open at a time)
+            faqItems.forEach(otherItem => {
+              otherItem.classList.remove('active');
+              otherItem.querySelector('.ek-faq-question')?.setAttribute('aria-expanded', 'false');
+              const otherWrapper = otherItem.querySelector('.ek-faq-answer-wrapper') as HTMLElement;
+              if (otherWrapper) {
+                otherWrapper.style.maxHeight = "0px";
+              }
+            });
+
+            // If it wasn't active, open it
+            if (!isActive) {
+              item.classList.add('active');
+              button.setAttribute('aria-expanded', 'true');
+              wrapper.style.maxHeight = wrapper.scrollHeight + "px";
+            }
+          });
+        }
+      });
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initFAQ);
+    } else {
+      initFAQ();
+    }
+  })();
+</script>

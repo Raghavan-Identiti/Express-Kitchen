@@ -1,0 +1,311 @@
+---
+import { Image } from "astro:assets";
+import testimonial1 from "../assets/images/testimonial1.webp";
+import testimonial2 from "../assets/images/testimonial2.webp";
+import testimonial3 from "../assets/images/testimonial3.webp";
+import testimonial_arrow_icon from "../assets/images/testimonial_arrow_icon.svg";
+
+const testimonials = [
+  {
+    image: testimonial1,
+    name: "Elizabeth Masalin",
+    title: "Exactly what I wanted!",
+    text: `"I am so very pleased with Express Kitchen!! I can't say enough great things about Susan!! She is so kind and so very knowledgeable..."`,
+  },
+  {
+    image: testimonial2,
+    name: "Lauren Fuller",
+    title: "Collaboration was amazing",
+    text: `"I had such a great experience. This being the first time I've ever done a kitchen remodel I appreciated Deb Wolak's ability..."`,
+  },
+  {
+    image: testimonial3,
+    name: "Uncle Brad",
+    title: "TOP-NOTCH Customer Service",
+    text: `"This was a great buying experience. Sharmin and Raffi are to be commended for their TOP-NOTCH customer service..."`,
+  },
+  {
+    image: testimonial1,
+    name: "Sarah Jenkins",
+    title: "Exceeded our expectations!",
+    text: `"From design to installation, the team was incredible. Our new kitchen is the centerpiece of our home, and we absolutely love it."`,
+  },
+  {
+    image: testimonial2,
+    name: "Mike Daniels",
+    title: "Incredible attention to detail",
+    text: `"They truly listen and worked flawlessly to get exactly what we envisioned. Superb quality and fantastic communication!"`,
+  },
+];
+// src/components/Testimonials.astro
+---
+
+<section class="ek-testimonial-section">
+  <div class="ek-testimonial-container">
+    <!-- Header -->
+    <div class="ek-testimonial-header">
+      <span class="ek-testimonial-tag">REAL KITCHENS. REAL FAMILIES.</span>
+      <h2>Don't <span>take our word</span> for it.</h2>
+      <p>
+        5,000+ verified reviews across Google, BBB, and Houzz · Rated A+ by the
+        Better Business Bureau
+      </p>
+    </div>
+
+    <!-- Carousel -->
+    <div class="ek-testimonial-carousel">
+      <button class="ek-carousel-control prev"
+        ><Image src={testimonial_arrow_icon} alt="Previous" /></button
+      >
+
+      <div class="ek-carousel-viewport">
+        <div class="ek-carousel-track">
+          {
+            testimonials.map((t) => (
+              <div class="ek-testimonial-card">
+                <Image src={t.image} alt="Testimonial background" />
+                <div class="ek-card-content">
+                  <h4>{t.name}</h4>
+                  <div class="ek-stars">★★★★★</div>
+                  <h5>{t.title}</h5>
+                  <p>{t.text}</p>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <button class="ek-carousel-control next"
+        ><Image src={testimonial_arrow_icon} alt="Next" /></button
+      >
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Testimonials Section */
+  .ek-testimonial-section {
+    background: var(--ek-gray-shade-premium);
+    background-image: url("../assets/images/testimonial_bg_image.webp");
+    background-size: cover;
+    background-position: center;
+    padding: 100px 20px;
+    color: var(--ek-white);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    font-family: var(--ek-primary-font);
+  }
+
+  /* Header */
+  .ek-testimonial-header h2 {
+    font-size: 35px;
+    font-weight: 700;
+    margin: 15px 0;
+    color: var(--ek-white);
+  }
+
+  .ek-testimonial-header h2 span {
+    color: var(--ek-primary-red);
+  }
+
+  .ek-testimonial-header p {
+    color: var(--ek-white);
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: 0px;
+  }
+
+  .ek-testimonial-tag {
+    display: inline-block;
+    background: var(--ek-red-tint-80);
+    color: var(--ek-black);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0px;
+  }
+
+  /* Carousel */
+  .ek-testimonial-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    position: relative;
+    max-width: 1150px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ek-carousel-viewport {
+    width: 1010px; /* 3 cards (320px) + 2 gaps (25px) = 1010px */
+    overflow: hidden;
+  }
+
+  .ek-carousel-track {
+    display: flex;
+    gap: 25px;
+    transition: transform 0.4s ease;
+  }
+
+  /* Cards */
+  .ek-testimonial-card {
+    width: 320px;
+    background: var(--ek-white);
+    border-radius: 14px;
+    overflow: hidden;
+    color: var(--ek-black);
+    text-align: left;
+    flex-shrink: 0;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  }
+
+  .ek-testimonial-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+
+  .ek-card-content {
+    padding: 18px;
+  }
+
+  .ek-card-content h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 0%;
+  }
+
+  .ek-stars {
+    color: #ffc107;
+    margin: 5px 0;
+  }
+
+  .ek-card-content h5 {
+    color: var(--ek-primary-red);
+    font-size: 16px;
+    margin: 6px 0;
+    font-weight: 500;
+    line-height: 150%;
+    letter-spacing: 0%;
+  }
+
+  .ek-card-content p {
+    font-size: 14px;
+    color: var(--ek-gray-tint-40);
+    font-weight: 400;
+    line-height: 150%;
+    letter-spacing: 0%;
+  }
+
+  /* Arrows */
+  .ek-carousel-control {
+    background: none;
+    border: none;
+    color: var(--ek-white);
+    font-size: 28px;
+    cursor: pointer;
+    padding: 10px;
+    flex-shrink: 0;
+  }
+
+  .ek-carousel-control.next img {
+    transform: rotate(180deg);
+  }
+  .ek-carousel-control.prev img {
+    transform: rotate(0deg);
+  }
+
+  .ek-carousel-control:hover {
+    opacity: 0.7;
+  }
+
+  @media (max-width: 1150px) {
+    .ek-carousel-viewport {
+      width: 665px; /* 2 cards */
+    }
+  }
+  @media (max-width: 768px) {
+    .ek-carousel-viewport {
+      width: 320px; /* 1 card */
+    }
+    .ek-carousel-control {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  (function () {
+    function initTestimonialCarousel() {
+      const track = document.querySelector(
+        ".ek-carousel-track",
+      ) as HTMLElement | null;
+      const nextButton = document.querySelector(
+        ".ek-carousel-control.next",
+      ) as HTMLButtonElement | null;
+      const prevButton = document.querySelector(
+        ".ek-carousel-control.prev",
+      ) as HTMLButtonElement | null;
+
+      if (!track || !nextButton || !prevButton) return;
+
+      let currentIndex = 0;
+      const cards = document.querySelectorAll(".ek-testimonial-card");
+      const totalCards = cards.length;
+      if (totalCards === 0) return;
+
+      const updateCarousel = () => {
+        // Because cards are wrapped differently depending on how users loaded them,
+        // the width of a single card might not always be directly available early on.
+        // But getting offsetWidth is safe.
+        const cardWidth = (cards[0] as HTMLElement).offsetWidth + 25; // width + gap
+        track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
+
+        // Limit logic based on visible cards
+        const cardsVisible =
+          window.innerWidth > 1150 ? 3 : window.innerWidth > 768 ? 2 : 1;
+
+        prevButton.style.opacity = currentIndex === 0 ? "0.3" : "1";
+        prevButton.disabled = currentIndex === 0;
+
+        const isNextDisabled = currentIndex >= totalCards - cardsVisible;
+        nextButton.style.opacity = isNextDisabled ? "0.3" : "1";
+        nextButton.disabled = isNextDisabled;
+      };
+
+      nextButton.addEventListener("click", () => {
+        const cardsVisible =
+          window.innerWidth > 1150 ? 3 : window.innerWidth > 768 ? 2 : 1;
+        if (currentIndex < totalCards - cardsVisible) {
+          currentIndex++;
+          updateCarousel();
+        }
+      });
+
+      prevButton.addEventListener("click", () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateCarousel();
+        }
+      });
+
+      window.addEventListener("resize", updateCarousel);
+      // Add a slight delay to ensure widths are calculated correctly after rendering
+      setTimeout(updateCarousel, 100);
+    }
+
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initTestimonialCarousel);
+    } else {
+      initTestimonialCarousel();
+    }
+  })();
+</script>

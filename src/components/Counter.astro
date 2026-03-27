@@ -1,0 +1,201 @@
+---
+// src/components/Counter.astro
+const stats = [
+  {
+    value: "108",
+    label: "Years Making<br/>Kitchens Right",
+    target: 108,
+    suffix: "",
+  },
+  {
+    value: "50,000+",
+    label: "All-Plywood Cabinets,<br/>Ready to Ship",
+    target: 50000,
+    suffix: "+",
+  },
+  {
+    value: "5,000+",
+    label: "Happy Customer<br/>Reviews",
+    target: 5000,
+    suffix: "+",
+  },
+  { value: "100K+", label: "Kitchens<br/>Designed", target: 100, suffix: "K+" },
+  { value: "A+", label: "BBB<br/>Rating", target: 0, suffix: "A+" }, // Non-numeric or static
+];
+---
+
+<section class="ek-counter-section">
+  <div class="container">
+    <div
+      class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 text-center justify-content-center"
+    >
+      {
+        stats.map((stat, index) => (
+          <div
+            class={`col ek-counter-col ${index !== stats.length - 1 ? "has-divider" : ""}`}
+          >
+            <div class="ek-counter-content">
+              <h2
+                class="ek-counter-value"
+                data-target={stat.target}
+                data-suffix={stat.suffix}
+              >
+                {stat.target === 0 ? stat.suffix : "0" + stat.suffix}
+              </h2>
+              <p class="ek-counter-label" set:html={stat.label} />
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .ek-counter-section {
+    background-color: var(--ek-soft-cream);
+    padding: 60px 0;
+    overflow: hidden;
+  }
+
+  .ek-counter-col {
+    display: flex;
+    justify-content: center;
+  }
+
+  .ek-counter-content {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+    padding: 10px 0;
+  }
+
+  .ek-counter-value {
+    font-family: var(--ek-primary-font);
+    color: var(--ek-primary-red);
+    font-size: 50px;
+    font-weight: 900;
+    line-height: 100%;
+    margin-bottom: 20px;
+    letter-spacing: 0%;
+  }
+
+  .ek-counter-label {
+    font-family: var(--ek-primary-font);
+    color: var(--ek-body-text);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin: 0;
+  }
+
+  /* Desktop Dividers with fading gradient */
+  @media (min-width: 992px) {
+    .has-divider {
+      position: relative;
+    }
+    .has-divider::after {
+      content: "";
+      position: absolute;
+      top: 10%;
+      right: 0;
+      width: 1px;
+      height: 80%;
+      background: linear-gradient(
+        to bottom,
+        rgba(237, 28, 36, 0) 0%,
+        #ed1c24 51.44%,
+        rgba(237, 28, 36, 0) 100%
+      );
+    }
+  }
+
+  /* Mobile/Tablet adjustments */
+  @media (max-width: 991px) {
+    .ek-counter-value {
+      font-size: 36px;
+    }
+    .ek-counter-label {
+      font-size: 14px;
+    }
+    .ek-counter-section {
+      padding: 40px 0;
+    }
+    /* Add bottom divider for stacked items on smaller screens, except the last few */
+    .ek-counter-col {
+      border-bottom: 1px solid rgba(242, 8, 25, 0.1);
+      padding-bottom: 20px;
+    }
+    .col:nth-last-child(-n + 2) {
+      border-bottom: none;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .col:nth-last-child(2) {
+      border-bottom: 1px solid rgba(242, 8, 25, 0.1);
+    }
+  }
+</style>
+
+<script>
+  // Simple intersection observer to trigger counter animation
+  const formatNumber = (num: number) => {
+    return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  };
+
+  const animateCounters = () => {
+    const counters = document.querySelectorAll(".ek-counter-value");
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const targetElement = entry.target;
+            const targetValue = parseInt(
+              targetElement.getAttribute("data-target") || "0",
+              10,
+            );
+            const suffix = targetElement.getAttribute("data-suffix") || "";
+
+            if (targetValue === 0) {
+              // It's a static value like "A+"
+              targetElement.textContent = suffix;
+              observer.unobserve(targetElement);
+              return;
+            }
+
+            let current = 0;
+            // Determine increment based on target size for smooth animation
+            const increment = targetValue / 40;
+            const duration = 1500; // ms
+            const stepTime = duration / 40;
+
+            const timer = setInterval(() => {
+              current += increment;
+              if (current >= targetValue) {
+                targetElement.textContent = formatNumber(targetValue) + suffix;
+                clearInterval(timer);
+              } else {
+                targetElement.textContent =
+                  formatNumber(Math.ceil(current)) + suffix;
+              }
+            }, stepTime);
+
+            observer.unobserve(targetElement);
+          }
+        });
+      },
+      { threshold: 0.5 },
+    ); // Trigger when 50% visible
+
+    counters.forEach((counter) => observer.observe(counter));
+  };
+
+  // Run on mount
+  document.addEventListener("DOMContentLoaded", animateCounters);
+</script>
