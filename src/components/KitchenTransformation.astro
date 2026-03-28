@@ -7,7 +7,7 @@ import { Image } from "astro:assets";
 ---
 
 <section class="kitchen-transformation">
-  <div class="container--narrow">
+  <div class="container-narrow">
     <div class="transformation-header">
       <span class="transformation-tagline">THE DIFFERENCE IT MAKES</span>
       <h2 class="transformation-title">
@@ -57,13 +57,15 @@ import { Image } from "astro:assets";
     font-family: var(--ek-primary-font);
   }
 
-  .kitchen-transformation .container--narrow {
-    max-width: 1320px;
+  .kitchen-transformation .container-narrow {
+    max-width: 1155px;
     margin: 0 auto;
     padding: 0 20px;
   }
 
   .kitchen-transformation .transformation-header {
+    max-width: 800px;
+    margin: 0 auto;
     margin-bottom: 50px;
   }
 
@@ -82,7 +84,7 @@ import { Image } from "astro:assets";
 
   .kitchen-transformation .transformation-title {
     font-size: 42px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.1;
     color: var(--ek-heading-color);
     margin: 0;
@@ -95,9 +97,8 @@ import { Image } from "astro:assets";
   .kitchen-transformation .slider-wrapper {
     position: relative;
     margin-bottom: 40px;
-    border-radius: 18px;
+    border-radius: 0px;
     overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   }
 
   .kitchen-transformation .slider-container {
@@ -125,7 +126,7 @@ import { Image } from "astro:assets";
   .kitchen-transformation .after-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     pointer-events: none;
     user-select: none;

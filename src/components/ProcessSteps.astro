@@ -161,21 +161,19 @@ const steps = [
     display: flex;
     flex-direction: column;
     height: 100%;
-    border-radius: 12px;
     overflow: hidden;
     background: var(--ek-white);
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
   }
 
   .ek-step-header {
-    background: var(--ek-white);
+    background:
+      linear-gradient(var(--ek-white), var(--ek-white)) padding-box,
+      linear-gradient(180deg, #ed1c24 0%, rgba(237, 28, 36, 0) 100%) border-box;
     padding: 20px 24px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
-    border-top: 1px solid transparent;
-    border-left: 1px solid transparent;
-    border-right: 1px solid transparent;
+    border: 1px solid transparent;
     border-bottom: none;
+    border-radius: 0px 24px 0px 0px;
   }
 
   .ek-step-label {

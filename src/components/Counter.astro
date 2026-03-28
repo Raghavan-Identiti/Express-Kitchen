@@ -20,6 +20,7 @@ const stats = [
     suffix: "+",
   },
   { value: "100K+", label: "Kitchens<br/>Designed", target: 100, suffix: "K+" },
+  { value: "10", label: "Showrooms<br/>to Visit", target: 10 },
   { value: "A+", label: "BBB<br/>Rating", target: 0, suffix: "A+" }, // Non-numeric or static
 ];
 ---
@@ -27,7 +28,7 @@ const stats = [
 <section class="ek-counter-section">
   <div class="container">
     <div
-      class="row row-cols-2 row-cols-md-3 row-cols-lg-5 g-4 text-center justify-content-center"
+      class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4 justify-content-center"
     >
       {
         stats.map((stat, index) => (
@@ -73,24 +74,30 @@ const stats = [
     padding: 10px 0;
   }
 
+  /* .ek-counter-section > .container > .row > .ek-counter-col:nth-child(2) {
+    gap: 20px;
+  } */
+
   .ek-counter-value {
     font-family: var(--ek-primary-font);
     color: var(--ek-primary-red);
     font-size: 50px;
-    font-weight: 900;
+    font-weight: 800;
     line-height: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
     letter-spacing: 0%;
+    text-align: left;
   }
 
   .ek-counter-label {
     font-family: var(--ek-primary-font);
-    color: var(--ek-body-text);
+    color: var(--ek-gray-tint-25);
     font-size: 18px;
     font-weight: 500;
-    line-height: 100%;
+    line-height: 120%;
     letter-spacing: 0%;
-    margin: 0;
+    margin: 10px 0;
+    text-align: left;
   }
 
   /* Desktop Dividers with fading gradient */
@@ -101,14 +108,14 @@ const stats = [
     .has-divider::after {
       content: "";
       position: absolute;
-      top: 10%;
+      top: 15%;
       right: 0;
       width: 1px;
-      height: 80%;
+      height: 70%;
       background: linear-gradient(
         to bottom,
         rgba(237, 28, 36, 0) 0%,
-        #ed1c24 51.44%,
+        rgba(237, 28, 36, 0.4) 50%,
         rgba(237, 28, 36, 0) 100%
       );
     }

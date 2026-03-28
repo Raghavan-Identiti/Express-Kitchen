@@ -28,15 +28,22 @@
 
 <style>
   .ek-navbar {
-    padding: 0.8rem 0;
+    padding: 1rem 0;
     background-color: var(--ek-white);
-    box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.04);
-    border-bottom: 1px solid var(--ek-gray-tint-80);
     /* Removing the 50px border-radius as the Express Kitchens brand (Frame 2) shows a flat navbar, 
 		   but if specific curve is needed, it goes here */
     z-index: 9999;
     position: sticky;
     top: 0;
+    transition: all 0.3s ease;
+  }
+
+  .ek-navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.85); /* Reduced opacity white */
+    backdrop-filter: blur(12px); /* Modern blur effect */
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    padding: 0.6rem 0; /* Slightly thinner when scrolling */
   }
 
   .ek-container {
@@ -109,3 +116,30 @@
     }
   }
 </style>
+
+<script>
+  (function() {
+    function initNavbar() {
+      const navbar = document.querySelector('.ek-navbar');
+      if (!navbar) return;
+      
+      const onScroll = () => {
+        if (window.scrollY > 50) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+      };
+      
+      window.addEventListener('scroll', onScroll, { passive: true });
+      // Initialize on load to check if already scrolled
+      onScroll();
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initNavbar);
+    } else {
+      initNavbar();
+    }
+  })();
+</script>
