@@ -120,7 +120,7 @@ const testimonials = [
 
   .ek-testimonial-tag {
     display: inline-block;
-    background: var(--ek-red-tint-80);
+    background: var(--ek-red-tint-60);
     color: var(--ek-black);
     padding: 6px 14px;
     border-radius: 20px;
@@ -137,13 +137,15 @@ const testimonials = [
     justify-content: center;
     margin-top: 50px;
     position: relative;
-    max-width: 1150px;
+    max-width: 1320px;
     margin-left: auto;
     margin-right: auto;
   }
 
   .ek-carousel-viewport {
-    width: 1010px; /* 3 cards (320px) + 2 gaps (25px) = 1010px */
+    width: 92%;
+    display: flex;
+    justify-content: center;
     overflow: hidden;
   }
 
@@ -155,7 +157,8 @@ const testimonials = [
 
   /* Cards */
   .ek-testimonial-card {
-    width: 320px;
+    width: 380px;
+    height: 390px;
     background: var(--ek-white);
     border-radius: 14px;
     overflow: hidden;
@@ -212,7 +215,7 @@ const testimonials = [
     color: var(--ek-white);
     font-size: 28px;
     cursor: pointer;
-    padding: 10px;
+    padding: 20px;
     flex-shrink: 0;
   }
 

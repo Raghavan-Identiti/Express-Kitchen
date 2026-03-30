@@ -58,7 +58,7 @@ import { Image } from "astro:assets";
   }
 
   .kitchen-transformation .container-narrow {
-    max-width: 1155px;
+    max-width: 1024px;
     margin: 0 auto;
     padding: 0 20px;
   }
@@ -71,12 +71,12 @@ import { Image } from "astro:assets";
 
   .kitchen-transformation .transformation-tagline {
     display: inline-block;
-    background-color: var(--ek-red-tint-80);
-    color: var(--ek-primary-red);
-    padding: 2px 14px;
+    background-color: #d4ebef;
+    color: var(--ek-gray-tint-25);
+    padding: 4px 14px;
     border-radius: 20px;
     font-size: 11px;
-    font-weight: 700;
+    font-weight: 600;
     letter-spacing: 0.5px;
     margin-bottom: 20px;
     text-transform: uppercase;
@@ -243,7 +243,7 @@ import { Image } from "astro:assets";
   }
 
   .kitchen-transformation .footer-block {
-    flex: 1;
+    flex: 0.4;
   }
 
   .kitchen-transformation .footer-label {
@@ -266,12 +266,12 @@ import { Image } from "astro:assets";
   }
 
   .kitchen-transformation .footer-before {
-    border-bottom: 1.5px solid var(--ek-red-tint-80);
+    border-bottom: 1px solid var(--ek-primary-red);
     padding-bottom: 15px;
   }
 
   .kitchen-transformation .footer-after {
-    border-bottom: 1.5px solid var(--ek-gray-tint-60);
+    border-bottom: 1px solid var(--ek-primary-red);
     padding-bottom: 15px;
     text-align: right;
   }
@@ -288,7 +288,7 @@ import { Image } from "astro:assets";
 
   .kitchen-transformation .footer-promo {
     color: var(--ek-primary-red);
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 500;
     line-height: 100%;
     margin: 0;
@@ -361,6 +361,52 @@ import { Image } from "astro:assets";
         return;
 
       let isDragging = false;
+      let hasPeeked = false;
+
+      const runPeekAnimation = () => {
+        if (hasPeeked) return;
+        hasPeeked = true;
+
+        // Sequence: Move to 40%, then 60%, then back to 50%
+        // Sync transitions for handle, line and the image clip-paths
+        const transitionVal = "0.8s ease-in-out";
+        sliderHandle.style.transition = `left ${transitionVal}`;
+        sliderLine.style.transition = `left ${transitionVal}`;
+        beforeImage.style.transition = `clip-path ${transitionVal}`;
+        afterImage.style.transition = `clip-path ${transitionVal}`;
+
+        const applyPosition = (pct: number) => {
+          sliderHandle.style.left = pct + "%";
+          sliderLine.style.left = pct + "%";
+          beforeImage.style.clipPath = `inset(0 ${100 - pct}% 0 0)`;
+          afterImage.style.clipPath = `inset(0 0 0 ${pct}%)`;
+        };
+
+        // Trigger peek sequence
+        setTimeout(() => {
+          if (isDragging) return;
+          applyPosition(40);
+
+          setTimeout(() => {
+            if (isDragging) return;
+            applyPosition(60);
+
+            setTimeout(() => {
+              if (isDragging) return;
+              applyPosition(50);
+
+              // Reset transitions to standard speed for interaction
+              setTimeout(() => {
+                const defaultTrans = "0.3s ease";
+                sliderHandle.style.transition = `left ${defaultTrans}`;
+                sliderLine.style.transition = `left ${defaultTrans}`;
+                beforeImage.style.transition = `clip-path ${defaultTrans}`;
+                afterImage.style.transition = `clip-path ${defaultTrans}`;
+              }, 800);
+            }, 800);
+          }, 800);
+        }, 300);
+      };
 
       const initializeSlider = () => {
         sliderHandle.style.transition = "left 0.3s ease";
@@ -390,14 +436,19 @@ import { Image } from "astro:assets";
         isDragging = true;
         sliderHandle.style.transition = "none";
         sliderLine.style.transition = "none";
+        beforeImage.style.transition = "none";
+        afterImage.style.transition = "none";
         if (e.cancelable) e.preventDefault();
       };
 
       const stopDragging = () => {
         if (isDragging) {
           isDragging = false;
-          sliderHandle.style.transition = "left 0.3s ease";
-          sliderLine.style.transition = "left 0.3s ease";
+          const defaultTrans = "0.3s ease";
+          sliderHandle.style.transition = `left ${defaultTrans}`;
+          sliderLine.style.transition = `left ${defaultTrans}`;
+          beforeImage.style.transition = `clip-path ${defaultTrans}`;
+          afterImage.style.transition = `clip-path ${defaultTrans}`;
         }
       };
 
@@ -432,6 +483,20 @@ import { Image } from "astro:assets";
       );
 
       window.addEventListener("touchend", stopDragging);
+
+      // Intersection Observer to trigger Peek
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting && !hasPeeked) {
+              runPeekAnimation();
+            }
+          });
+        },
+        { threshold: 0.5 },
+      ); // Trigger when 50% visible
+
+      observer.observe(sliderContainer);
 
       initializeSlider();
     }

@@ -28,7 +28,7 @@
 
 <style>
   .ek-navbar {
-    padding: 1rem 0;
+    padding: 1.5rem 0 1rem;
     background-color: var(--ek-white);
     /* Removing the 50px border-radius as the Express Kitchens brand (Frame 2) shows a flat navbar, 
 		   but if specific curve is needed, it goes here */
@@ -118,26 +118,26 @@
 </style>
 
 <script>
-  (function() {
+  (function () {
     function initNavbar() {
-      const navbar = document.querySelector('.ek-navbar');
+      const navbar = document.querySelector(".ek-navbar");
       if (!navbar) return;
-      
+
       const onScroll = () => {
         if (window.scrollY > 50) {
-          navbar.classList.add('scrolled');
+          navbar.classList.add("scrolled");
         } else {
-          navbar.classList.remove('scrolled');
+          navbar.classList.remove("scrolled");
         }
       };
-      
-      window.addEventListener('scroll', onScroll, { passive: true });
+
+      window.addEventListener("scroll", onScroll, { passive: true });
       // Initialize on load to check if already scrolled
       onScroll();
     }
 
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initNavbar);
+    if (document.readyState === "loading") {
+      document.addEventListener("DOMContentLoaded", initNavbar);
     } else {
       initNavbar();
     }
