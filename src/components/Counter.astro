@@ -20,28 +20,25 @@ const stats = [
     suffix: "+",
   },
   { value: "100K+", label: "Kitchens<br/>Designed", target: 100, suffix: "K+" },
-  { value: "10", label: "Showrooms<br/>to Visit", target: 10 },
-  { value: "A+", label: "BBB<br/>Rating", target: 0, suffix: "A+" }, // Non-numeric or static
+  { value: "10", label: "Showrooms<br/>to Visit", target: 10, suffix: "" },
+  { value: "A+", label: "BBB<br/>Rating", target: 0, suffix: "A+" },
 ];
 ---
 
 <section class="ek-counter-section">
   <div class="container">
-    <div
-      class="row row-cols-2 row-cols-md-3 row-cols-lg-6 g-4 justify-content-center"
-    >
+    <div class="ek-counter-grid">
       {
-        stats.map((stat, index) => (
-          <div
-            class={`col ek-counter-col ${index !== stats.length - 1 ? "has-divider" : ""}`}
-          >
+        stats.map((stat) => (
+          <div class="ek-counter-item">
             <div class="ek-counter-content">
               <h2
                 class="ek-counter-value"
                 data-target={stat.target}
                 data-suffix={stat.suffix}
+                data-final={stat.value}
               >
-                {stat.target === 0 ? stat.suffix : "0" + stat.suffix}
+                {stat.value}
               </h2>
               <p class="ek-counter-label" set:html={stat.label} />
             </div>
@@ -58,34 +55,50 @@ const stats = [
     padding: 60px 0;
     overflow: hidden;
   }
-  .ek-counter-section .row {
-    display: flex;
-    justify-content: space-between;
-  }
-  .ek-counter-section .row .ek-counter-col:nth-child(2) {
-    /* width: 210px; */
+
+  .ek-counter-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    width: 100%;
+    gap: 0;
   }
 
-  .ek-counter-col {
-    flex: 1;
-    max-width: 16.6666%;
-    display: flex;
+  .ek-counter-grid .ek-counter-item:nth-child(1) {
+    padding: 0px;
     justify-content: center;
+  }
+
+  .ek-counter-item {
+    padding: 0 40px;
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .ek-counter-item:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    top: 15%;
+    right: 0;
+    width: 1px;
+    height: 70%;
+    background: linear-gradient(
+      to bottom,
+      rgba(237, 28, 36, 0) 0%,
+      rgba(237, 28, 36, 0.4) 50%,
+      rgba(237, 28, 36, 0) 100%
+    );
   }
 
   .ek-counter-content {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     height: 100%;
-    position: relative;
     padding: 10px 0;
+    min-width: 0;
   }
-
-  /* .ek-counter-section > .container > .row > .ek-counter-col:nth-child(2) {
-    gap: 20px;
-  } */
 
   .ek-counter-value {
     font-family: var(--ek-primary-font);
@@ -96,6 +109,11 @@ const stats = [
     margin-bottom: 12px;
     letter-spacing: 0%;
     text-align: left;
+    /* Key fixes: stable width + no digit-width jitter */
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    /* Reserve space based on final value so layout never shifts */
+    min-width: max-content;
   }
 
   .ek-counter-label {
@@ -107,31 +125,30 @@ const stats = [
     letter-spacing: 0%;
     margin: 10px 0;
     text-align: left;
+    min-width: 190px;
   }
 
-  /* Desktop Dividers with fading gradient */
-  @media (min-width: 992px) {
-    .has-divider {
-      position: relative;
-    }
-    .has-divider::after {
-      content: "";
-      position: absolute;
-      top: 15%;
-      right: 0;
-      width: 1.4px;
-      height: 75%;
-      background: linear-gradient(
-        to bottom,
-        rgba(237, 28, 36, 0) 0%,
-        rgba(237, 28, 36, 0.4) 50%,
-        rgba(237, 28, 36, 0) 100%
-      );
+  @media (max-width: 1200px) {
+    .ek-counter-item {
+      padding: 0 20px;
     }
   }
 
-  /* Mobile/Tablet adjustments */
   @media (max-width: 991px) {
+    .ek-counter-grid {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px 0;
+    }
+    .ek-counter-item:nth-child(3n)::after {
+      display: none;
+    }
+    .ek-counter-item {
+      border-bottom: 1px solid rgba(242, 8, 25, 0.1);
+      padding-bottom: 20px;
+    }
+    .ek-counter-item:nth-last-child(-n + 3) {
+      border-bottom: none;
+    }
     .ek-counter-value {
       font-size: 36px;
     }
@@ -141,17 +158,21 @@ const stats = [
     .ek-counter-section {
       padding: 40px 0;
     }
-    /* Add bottom divider for stacked items on smaller screens, except the last few */
-    .ek-counter-col {
-      border-bottom: 1px solid rgba(242, 8, 25, 0.1);
-      padding-bottom: 20px;
-    }
-    .col:nth-last-child(-n + 2) {
-      border-bottom: none;
-    }
   }
 
   @media (max-width: 767px) {
+    .ek-counter-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .ek-counter-item:nth-child(3n)::after {
+      display: block;
+    }
+    .ek-counter-item:nth-child(2n)::after {
+      display: none;
+    }
+    .ek-counter-item:nth-last-child(3) {
+      border-bottom: 1px solid rgba(242, 8, 25, 0.1);
+    }
     .col:nth-last-child(2) {
       border-bottom: 1px solid rgba(242, 8, 25, 0.1);
     }
@@ -159,59 +180,54 @@ const stats = [
 </style>
 
 <script>
-  // Simple intersection observer to trigger counter animation
-  const formatNumber = (num: number) => {
+  const formatNumber = (num: number): string => {
     return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   };
 
   const animateCounters = () => {
-    const counters = document.querySelectorAll(".ek-counter-value");
+    const counters =
+      document.querySelectorAll<HTMLElement>(".ek-counter-value");
 
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const targetElement = entry.target;
-            const targetValue = parseInt(
-              targetElement.getAttribute("data-target") || "0",
-              10,
-            );
-            const suffix = targetElement.getAttribute("data-suffix") || "";
+          if (!entry.isIntersecting) return;
 
-            if (targetValue === 0) {
-              // It's a static value like "A+"
-              targetElement.textContent = suffix;
-              observer.unobserve(targetElement);
-              return;
-            }
+          const el = entry.target as HTMLElement;
+          const target = parseInt(el.getAttribute("data-target") || "0", 10);
+          const suffix = el.getAttribute("data-suffix") || "";
+          const final = el.getAttribute("data-final") || "";
 
-            let current = 0;
-            // Determine increment based on target size for smooth animation
-            const increment = targetValue / 40;
-            const duration = 1500; // ms
-            const stepTime = duration / 40;
+          observer.unobserve(el);
 
-            const timer = setInterval(() => {
-              current += increment;
-              if (current >= targetValue) {
-                targetElement.textContent = formatNumber(targetValue) + suffix;
-                clearInterval(timer);
-              } else {
-                targetElement.textContent =
-                  formatNumber(Math.ceil(current)) + suffix;
-              }
-            }, stepTime);
-
-            observer.unobserve(targetElement);
+          // Static values (A+) or zero-target — just show final, no animation
+          if (target === 0) {
+            el.textContent = final;
+            return;
           }
+
+          let current = 0;
+          const steps = 40;
+          const increment = target / steps;
+          const stepTime = 1500 / steps;
+
+          const timer = setInterval(() => {
+            current += increment;
+            if (current >= target) {
+              // Snap to the exact final display value (e.g. "100K+", "50,000+")
+              el.textContent = final;
+              clearInterval(timer);
+            } else {
+              el.textContent = formatNumber(Math.ceil(current)) + suffix;
+            }
+          }, stepTime);
         });
       },
       { threshold: 0.5 },
-    ); // Trigger when 50% visible
+    );
 
     counters.forEach((counter) => observer.observe(counter));
   };
 
-  // Run on mount
   document.addEventListener("DOMContentLoaded", animateCounters);
 </script>

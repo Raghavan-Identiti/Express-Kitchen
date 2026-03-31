@@ -24,18 +24,6 @@ const testimonials = [
     title: "TOP-NOTCH Customer Service",
     text: `"This was a great buying experience. Sharmin and Raffi are to be commended for their TOP-NOTCH customer service..."`,
   },
-  {
-    image: testimonial1,
-    name: "Sarah Jenkins",
-    title: "Exceeded our expectations!",
-    text: `"From design to installation, the team was incredible. Our new kitchen is the centerpiece of our home, and we absolutely love it."`,
-  },
-  {
-    image: testimonial2,
-    name: "Mike Daniels",
-    title: "Incredible attention to detail",
-    text: `"They truly listen and worked flawlessly to get exactly what we envisioned. Superb quality and fantastic communication!"`,
-  },
 ];
 // src/components/Testimonials.astro
 ---
@@ -54,9 +42,7 @@ const testimonials = [
 
     <!-- Carousel -->
     <div class="ek-testimonial-carousel">
-      <button class="ek-carousel-control prev"
-        ><Image src={testimonial_arrow_icon} alt="Previous" /></button
-      >
+      <!-- <button class="ek-carousel-control prev"><Image src={testimonial_arrow_icon} alt="Previous" /></button> -->
 
       <div class="ek-carousel-viewport">
         <div class="ek-carousel-track">
@@ -76,9 +62,7 @@ const testimonials = [
         </div>
       </div>
 
-      <button class="ek-carousel-control next"
-        ><Image src={testimonial_arrow_icon} alt="Next" /></button
-      >
+      <!-- <button class="ek-carousel-control next"><Image src={testimonial_arrow_icon} alt="Next" /></button> -->
     </div>
   </div>
 </section>
@@ -202,8 +186,8 @@ const testimonials = [
 
   .ek-card-content p {
     font-size: 14px;
-    color: var(--ek-gray-tint-40);
-    font-weight: 400;
+    color: var(--ek-gray-tint-25);
+    font-weight: 500;
     line-height: 150%;
     letter-spacing: 0%;
   }

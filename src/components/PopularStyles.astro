@@ -19,12 +19,12 @@ import iconTruck from "../assets/images/ek_truck_icon.svg";
 import iconCart from "../assets/images/ek_shopping_cart.svg";
 
 const popularStyles = [
-  { img: imgMero, name: "MERO", highlight: "PAINTED WHITE", currentPrice: "3928", currentCents: "63", oldPrice: "4586", oldCents: "84", monthly: "40", leadTime: "3 Wks", desc: "Simple, honest, and built to last \u2013 the Mero shaker is the style that never goes out of fashion." },
-  { img: imgDerry, name: "DERRY", highlight: "PAINTED STRATUS", currentPrice: "4400", currentCents: "93", oldPrice: "5138", oldCents: "27", monthly: "67", leadTime: "3 Wks", desc: "Understated craftsmanship and honest value \u2014 the Derry shaker is the style that lets the rest of your kitchen shine." },
-  { img: imgAvon, name: "AVON", highlight: "PAINTED WHITE", currentPrice: "3989", currentCents: "55", oldPrice: "3840", oldCents: "50", monthly: "30", leadTime: "3 Wks", desc: "Clean lines, warm feel, and priced for real life \u2014 the Avon shaker delivers without compromise." },
-  { img: imgTribeca, name: "EM", highlight: "TRIBECA A", currentPrice: "4584", currentCents: "58", oldPrice: "3667", oldCents: "66", monthly: "48", leadTime: "16 Wks", desc: "Deep, textured, and built to take whatever a kitchen throws at it \u2014 a matte finish that feels as considered as it looks." },
-  { img: imgEden, name: "EM EDEN", highlight: "GREY WOOD", currentPrice: "4835", currentCents: "70", oldPrice: "3868", oldCents: "56", monthly: "67", leadTime: "16 Wks", desc: "Where clean lines meet lasting durability \u2014 Eden's sleek slab doors bring a quietly modern edge to any kitchen." },
-  { img: imgManhattan, name: "EV", highlight: "MANHATTAN PM", currentPrice: "4048", currentCents: "48", oldPrice: "3238", oldCents: "78", monthly: "42", leadTime: "16 Wks", desc: "Matte, minimal, and built to stay spotless \u2014 Manhattan's slab doors are modern simplicity at its best." }
+  { img: imgMero, name: "MERO", highlight: "PAINTED WHITE", currentPrice: "3928", currentCents: "63", oldPrice: "4586", oldCents: "84", monthly: "40", leadTime: "3 Wks", desc: "Simple, honest, and built to last – the Mero shaker is the style that never goes out of fashion.", type: "framed" },
+  { img: imgDerry, name: "DERRY", highlight: "PAINTED STRATUS", currentPrice: "4400", currentCents: "93", oldPrice: "5138", oldCents: "27", monthly: "67", leadTime: "3 Wks", desc: "Understated craftsmanship and honest value — the Derry shaker is the style that lets the rest of your kitchen shine.", type: "framed" },
+  { img: imgAvon, name: "AVON", highlight: "PAINTED WHITE", currentPrice: "3989", currentCents: "55", oldPrice: "3840", oldCents: "50", monthly: "30", leadTime: "3 Wks", desc: "Clean lines, warm feel, and priced for real life — the Avon shaker delivers without compromise.", type: "framed" },
+  { img: imgTribeca, name: "EM", highlight: "TRIBECA A", currentPrice: "4584", currentCents: "58", oldPrice: "3667", oldCents: "66", monthly: "48", leadTime: "16 Wks", desc: "Deep, textured, and built to take whatever a kitchen throws at it — a matte finish that feels as considered as it looks.", type: "frameless" },
+  { img: imgEden, name: "EM EDEN", highlight: "GREY WOOD", currentPrice: "4835", currentCents: "70", oldPrice: "3868", oldCents: "56", monthly: "67", leadTime: "16 Wks", desc: "Where clean lines meet lasting durability — Eden's sleek slab doors bring a quietly modern edge to any kitchen.", type: "frameless" },
+  { img: imgManhattan, name: "EV", highlight: "MANHATTAN PM", currentPrice: "4048", currentCents: "48", oldPrice: "3238", oldCents: "78", monthly: "42", leadTime: "16 Wks", desc: "Matte, minimal, and built to stay spotless — Manhattan's slab doors are modern simplicity at its best.", type: "frameless" }
 ];
 
 const features = [
@@ -62,9 +62,10 @@ const features = [
     <!-- Filters Row -->
     <div class="ek-filters-wrap d-flex flex-wrap align-items-center justify-content-center gap-3 gap-lg-4 mb-5">
       <!-- Framed/Frameless Toggle -->
-      <div class="ek-type-toggle">
-        <button class="ek-toggle-btn active">Framed</button>
-        <button class="ek-toggle-btn">Frameless</button>
+      <div class="ek-type-toggle" id="style-filter-toggle">
+        <button class="ek-toggle-btn active" data-filter="all">All</button>
+        <button class="ek-toggle-btn" data-filter="framed">Framed</button>
+        <button class="ek-toggle-btn" data-filter="frameless">Frameless</button>
       </div>
       
       <!-- Color Swatches -->
@@ -89,13 +90,14 @@ const features = [
     </div>
 
     <!-- Products Grid -->
-    <div class="row g-5 ek-products-row">
+    <div class="row g-5 ek-products-row" id="popular-styles-grid">
       {popularStyles.map((product) => (
-        <div class="col-lg-4 col-md-6 col-12">
+        <div class="col-lg-4 col-md-6 col-12 style-grid-item" data-category={product.type}>
           <div class="ek-product-card">
             <!-- Image -->
             <div class="ek-product-img-wrap">
               <Image src={product.img} alt={product.name} class="ek-product-img" />
+              {/* <span class="ek-style-badge">{product.type}</span> */}
             </div>
             
             <!-- Details -->
@@ -277,7 +279,6 @@ const features = [
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    cursor: pointer;
   }
 
   .ek-feature-list {
@@ -310,8 +311,24 @@ const features = [
     aspect-ratio: 4/3;
     overflow: hidden;
     margin-bottom: 15px;
-    /* Soft shadow or background if image is transparent, but these look like full photos */
     background: #f5f5f5; 
+    position: relative;
+  }
+
+  .ek-style-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: var(--ek-white);
+    color: var(--ek-primary-red);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    z-index: 5;
   }
 
   .ek-product-img {
@@ -517,4 +534,60 @@ const features = [
       justify-content: center;
     }
   }
+
+  /* Filter Animation Styles */
+  .style-grid-item {
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+  
+  .style-grid-item.filtered-out {
+    opacity: 0;
+    transform: scale(0.95);
+    display: none;
+  }
 </style>
+
+<script>
+  function initStyleFiltering() {
+    const filterButtons = document.querySelectorAll('#style-filter-toggle .ek-toggle-btn');
+    const styleItems = document.querySelectorAll('.style-grid-item');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const filter = button.getAttribute('data-filter');
+
+        // Toggle active button
+        filterButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        // Filter items
+        styleItems.forEach(item => {
+          const category = item.getAttribute('data-category');
+          
+          if (filter === 'all' || filter === category) {
+            item.classList.remove('filtered-out');
+            setTimeout(() => {
+               // To allow animation to play correctly
+               (item as HTMLElement).style.display = 'block';
+            }, 0);
+          } else {
+             item.classList.add('filtered-out');
+             // Optionally wait for transition to end before display: none
+             setTimeout(() => {
+                if(item.classList.contains('filtered-out')) {
+                  (item as HTMLElement).style.display = 'none';
+                }
+             }, 400); 
+          }
+        });
+      });
+    });
+  }
+
+  // Run on mount
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStyleFiltering);
+  } else {
+    initStyleFiltering();
+  }
+</script>
