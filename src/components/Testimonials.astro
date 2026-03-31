@@ -56,34 +56,46 @@ const testimonials = [
 
     <!-- Carousel -->
     <div class="ek-testimonial-carousel">
-      <button class="ek-carousel-control prev"
+      <!-- Desktop arrows sit outside viewport as flex siblings -->
+      <button class="ek-carousel-control prev desktop-arrow"
         ><Image src={testimonial_arrow_icon} alt="Previous" /></button
       >
 
-      <div class="ek-carousel-viewport">
-        <div class="ek-carousel-track">
-          {
-            testimonials.map((t) => (
-              <div class="ek-testimonial-card">
-                <Image
-                  src={t.image}
-                  alt="Testimonial background"
-                  class="ek-testimonial-image"
-                  inferSize={true}
-                />
-                <div class="ek-card-content">
-                  <h4>{t.name}</h4>
-                  <div class="ek-stars">★★★★★</div>
-                  <h5>{t.title}</h5>
-                  <p>{t.text}</p>
+      <!-- Inner wrapper: on mobile, arrows are absolutely positioned over this -->
+      <div class="ek-carousel-inner">
+        <!-- Mobile-only arrows inside the inner wrapper -->
+        <button class="ek-carousel-control prev mobile-arrow"
+          ><Image src={testimonial_arrow_icon} alt="Previous" /></button
+        >
+        <button class="ek-carousel-control next mobile-arrow"
+          ><Image src={testimonial_arrow_icon} alt="Next" /></button
+        >
+
+        <div class="ek-carousel-viewport">
+          <div class="ek-carousel-track">
+            {
+              testimonials.map((t) => (
+                <div class="ek-testimonial-card">
+                  <Image
+                    src={t.image}
+                    alt="Testimonial background"
+                    class="ek-testimonial-image"
+                    inferSize={true}
+                  />
+                  <div class="ek-card-content">
+                    <h4>{t.name}</h4>
+                    <div class="ek-stars">★★★★★</div>
+                    <h5>{t.title}</h5>
+                    <p>{t.text}</p>
+                  </div>
                 </div>
-              </div>
-            ))
-          }
+              ))
+            }
+          </div>
         </div>
       </div>
 
-      <button class="ek-carousel-control next"
+      <button class="ek-carousel-control next desktop-arrow"
         ><Image src={testimonial_arrow_icon} alt="Next" /></button
       >
     </div>
@@ -149,10 +161,21 @@ const testimonials = [
     margin-right: auto;
   }
 
+  /* Inner wrapper — only meaningful on mobile */
+  .ek-carousel-inner {
+    display: contents; /* transparent on desktop */
+  }
+
+  /* Hide mobile arrows on desktop */
+  .mobile-arrow {
+    display: none;
+  }
+
   .ek-carousel-viewport {
-    width: 92%;
+    width: 1190px;
+    max-width: 92%;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     overflow: hidden;
   }
 
@@ -215,7 +238,7 @@ const testimonials = [
     letter-spacing: 0%;
   }
 
-  /* Arrows */
+  /* Arrows — desktop */
   .ek-carousel-control {
     background: none;
     border: none;
@@ -239,29 +262,92 @@ const testimonials = [
 
   @media (max-width: 1150px) {
     .ek-carousel-viewport {
-      width: 665px; /* 2 cards */
+      width: 710px; /* 2 cards */
     }
   }
+
   @media (max-width: 768px) {
-    .ek-carousel-viewport {
-      width: 320px; /* 1 card */
+    /* Stack section padding */
+    .ek-testimonial-section {
+      padding: 60px 16px;
     }
-    .ek-carousel-control {
+
+    /* Header */
+    .ek-testimonial-header p {
+      padding: 0;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    /* Carousel: center on screen */
+    .ek-testimonial-carousel {
+      margin-top: 32px;
+    }
+
+    /* Hide desktop arrows */
+    .desktop-arrow {
       display: none;
     }
-    .ek-testimonial-header p {
-      padding: 0 1rem;
-      line-height: 130%;
+
+    /* Inner wrapper becomes a real positioned block */
+    .ek-carousel-inner {
+      display: block;
+      position: relative;
+      width: 100%;
+      max-width: 325px;
+      margin: 0 auto;
     }
+
+    /* Mobile arrows — absolutely over the card */
+    .mobile-arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: absolute;
+      top: 45%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.35);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      padding: 6px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .mobile-arrow:hover {
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .mobile-arrow.prev {
+      left: -4px;
+    }
+    .mobile-arrow.next {
+      right: -4px;
+    }
+    .mobile-arrow img {
+      width: 16px;
+      height: 16px;
+    }
+    .mobile-arrow.next img {
+      transform: rotate(180deg);
+    }
+
+    /* Viewport full-width inside inner wrapper */
+    .ek-carousel-viewport {
+      width: 100%;
+      max-width: 360px;
+    }
+
+    /* Card: fluid, full width of viewport */
     .ek-testimonial-card {
       width: 320px;
+      max-width: 100%;
       height: auto;
     }
+
     .ek-testimonial-card img {
-      height: 160px;
-    }
-    .ek-card-content {
-      padding: 18px;
+      height: 200px;
     }
   }
 </style>
@@ -272,14 +358,14 @@ const testimonials = [
       const track = document.querySelector(
         ".ek-carousel-track",
       ) as HTMLElement | null;
-      const nextButton = document.querySelector(
+      const nextButtons = document.querySelectorAll(
         ".ek-carousel-control.next",
-      ) as HTMLButtonElement | null;
-      const prevButton = document.querySelector(
+      ) as NodeListOf<HTMLButtonElement>;
+      const prevButtons = document.querySelectorAll(
         ".ek-carousel-control.prev",
-      ) as HTMLButtonElement | null;
+      ) as NodeListOf<HTMLButtonElement>;
 
-      if (!track || !nextButton || !prevButton) return;
+      if (!track || !nextButtons.length || !prevButtons.length) return;
 
       let currentIndex = 0;
       const cards = document.querySelectorAll(".ek-testimonial-card");
@@ -287,42 +373,46 @@ const testimonials = [
       if (totalCards === 0) return;
 
       const updateCarousel = () => {
-        // Because cards are wrapped differently depending on how users loaded them,
-        // the width of a single card might not always be directly available early on.
-        // But getting offsetWidth is safe.
         const cardWidth = (cards[0] as HTMLElement).offsetWidth + 25; // width + gap
         track.style.transform = `translateX(-${currentIndex * cardWidth}px)`;
 
-        // Limit logic based on visible cards
         const cardsVisible =
           window.innerWidth > 1150 ? 3 : window.innerWidth > 768 ? 2 : 1;
 
-        prevButton.style.opacity = currentIndex === 0 ? "0.3" : "1";
-        prevButton.disabled = currentIndex === 0;
+        const atStart = currentIndex === 0;
+        const atEnd = currentIndex >= totalCards - cardsVisible;
 
-        const isNextDisabled = currentIndex >= totalCards - cardsVisible;
-        nextButton.style.opacity = isNextDisabled ? "0.3" : "1";
-        nextButton.disabled = isNextDisabled;
+        prevButtons.forEach((btn) => {
+          btn.style.opacity = atStart ? "0.3" : "1";
+          btn.disabled = atStart;
+        });
+        nextButtons.forEach((btn) => {
+          btn.style.opacity = atEnd ? "0.3" : "1";
+          btn.disabled = atEnd;
+        });
       };
 
-      nextButton.addEventListener("click", () => {
-        const cardsVisible =
-          window.innerWidth > 1150 ? 3 : window.innerWidth > 768 ? 2 : 1;
-        if (currentIndex < totalCards - cardsVisible) {
-          currentIndex++;
-          updateCarousel();
-        }
-      });
+      nextButtons.forEach((btn) =>
+        btn.addEventListener("click", () => {
+          const cardsVisible =
+            window.innerWidth > 1150 ? 3 : window.innerWidth > 768 ? 2 : 1;
+          if (currentIndex < totalCards - cardsVisible) {
+            currentIndex++;
+            updateCarousel();
+          }
+        }),
+      );
 
-      prevButton.addEventListener("click", () => {
-        if (currentIndex > 0) {
-          currentIndex--;
-          updateCarousel();
-        }
-      });
+      prevButtons.forEach((btn) =>
+        btn.addEventListener("click", () => {
+          if (currentIndex > 0) {
+            currentIndex--;
+            updateCarousel();
+          }
+        }),
+      );
 
       window.addEventListener("resize", updateCarousel);
-      // Add a slight delay to ensure widths are calculated correctly after rendering
       setTimeout(updateCarousel, 100);
     }
 
