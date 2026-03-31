@@ -1,6 +1,7 @@
 ---
 // homepage.astro
 import ek_hero_video from "../assets/videos/ek_hero_video.webm";
+import ek_hero_video_frame from "../assets/images/ek_hero_video_frame.webp";
 import badge_price_match from "../assets/images/badge-price-match.svg";
 import badge_finance from "../assets/images/badge-finance.svg";
 import { Image } from "astro:assets";
@@ -250,8 +251,13 @@ import Footer from "../components/Footer.astro";
         class="col-lg-6 col-md-12 d-flex align-items-start justify-content-center"
       >
         <div class="ek-hero-img-wrapper">
-          <video src={ek_hero_video} class="ek-hero-video" autoplay muted loop
-          ></video>
+          <video
+            src={ek_hero_video}
+            class="ek-hero-video"
+            poster={ek_hero_video_frame.src}
+            autoplay
+            muted
+            loop></video>
         </div>
       </div>
     </div>
