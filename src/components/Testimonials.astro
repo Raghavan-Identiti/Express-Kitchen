@@ -1,28 +1,42 @@
 ---
 import { Image } from "astro:assets";
-import testimonial1 from "../assets/images/testimonial1.webp";
-import testimonial2 from "../assets/images/testimonial2.webp";
-import testimonial3 from "../assets/images/testimonial3.webp";
 import testimonial_arrow_icon from "../assets/images/testimonial_arrow_icon.svg";
 
 const testimonials = [
   {
-    image: testimonial1,
+    image:
+      "https://cdn11.bigcommerce.com/s-dsdbflh9ev/images/stencil/original/image-manager/review-1-elizabeth.png?t=1774706604",
     name: "Elizabeth Masalin",
     title: "Exactly what I wanted!",
     text: `"I am so very pleased with Express Kitchen!! I can't say enough great things about Susan!! She is so kind and so very knowledgeable..."`,
   },
   {
-    image: testimonial2,
+    image:
+      "https://cdn11.bigcommerce.com/s-dsdbflh9ev/images/stencil/original/image-manager/review-2-lauren.png?t=1774706606",
     name: "Lauren Fuller",
     title: "Collaboration was amazing",
     text: `"I had such a great experience. This being the first time I've ever done a kitchen remodel I appreciated Deb Wolak's ability..."`,
   },
   {
-    image: testimonial3,
+    image:
+      "https://cdn11.bigcommerce.com/s-dsdbflh9ev/images/stencil/original/image-manager/review-3-uncle-brad.png?t=1774706608",
     name: "Uncle Brad",
     title: "TOP-NOTCH Customer Service",
     text: `"This was a great buying experience. Sharmin and Raffi are to be commended for their TOP-NOTCH customer service..."`,
+  },
+  {
+    image:
+      "https://cdn11.bigcommerce.com/s-dsdbflh9ev/images/stencil/original/image-manager/review-4-maria.png?t=1774706611",
+    name: "Maria Santos",
+    title: "Dream kitchen delivered!",
+    text: `"The whole process from design to delivery was seamless. The team made it so easy and stress-free. Absolutely love the result..."`,
+  },
+  {
+    image:
+      "https://cdn11.bigcommerce.com/s-dsdbflh9ev/images/stencil/original/image-manager/review-5-james.png?t=1774706614",
+    name: "James Thornton",
+    title: "Worth every penny",
+    text: `"Skeptical about ordering cabinets online, but Express Kitchens exceeded every expectation. Quality is truly outstanding..."`,
   },
 ];
 // src/components/Testimonials.astro
@@ -42,14 +56,21 @@ const testimonials = [
 
     <!-- Carousel -->
     <div class="ek-testimonial-carousel">
-      <!-- <button class="ek-carousel-control prev"><Image src={testimonial_arrow_icon} alt="Previous" /></button> -->
+      <button class="ek-carousel-control prev"
+        ><Image src={testimonial_arrow_icon} alt="Previous" /></button
+      >
 
       <div class="ek-carousel-viewport">
         <div class="ek-carousel-track">
           {
             testimonials.map((t) => (
               <div class="ek-testimonial-card">
-                <Image src={t.image} alt="Testimonial background" />
+                <Image
+                  src={t.image}
+                  alt="Testimonial background"
+                  class="ek-testimonial-image"
+                  inferSize={true}
+                />
                 <div class="ek-card-content">
                   <h4>{t.name}</h4>
                   <div class="ek-stars">★★★★★</div>
@@ -62,7 +83,9 @@ const testimonials = [
         </div>
       </div>
 
-      <!-- <button class="ek-carousel-control next"><Image src={testimonial_arrow_icon} alt="Next" /></button> -->
+      <button class="ek-carousel-control next"
+        ><Image src={testimonial_arrow_icon} alt="Next" /></button
+      >
     </div>
   </div>
 </section>
