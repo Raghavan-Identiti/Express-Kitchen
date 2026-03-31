@@ -19,12 +19,12 @@ import iconTruck from "../assets/images/ek_truck_icon.svg";
 import iconCart from "../assets/images/ek_shopping_cart.svg";
 
 const popularStyles = [
-  { img: imgMero, name: "MERO", highlight: "PAINTED WHITE", currentPrice: "3928", currentCents: "63", oldPrice: "4586", oldCents: "84", monthly: "40", leadTime: "3 Wks", desc: "Simple, honest, and built to last – the Mero shaker is the style that never goes out of fashion.", type: "framed" },
-  { img: imgDerry, name: "DERRY", highlight: "PAINTED STRATUS", currentPrice: "4400", currentCents: "93", oldPrice: "5138", oldCents: "27", monthly: "67", leadTime: "3 Wks", desc: "Understated craftsmanship and honest value — the Derry shaker is the style that lets the rest of your kitchen shine.", type: "framed" },
-  { img: imgAvon, name: "AVON", highlight: "PAINTED WHITE", currentPrice: "3989", currentCents: "55", oldPrice: "3840", oldCents: "50", monthly: "30", leadTime: "3 Wks", desc: "Clean lines, warm feel, and priced for real life — the Avon shaker delivers without compromise.", type: "framed" },
-  { img: imgTribeca, name: "EM", highlight: "TRIBECA A", currentPrice: "4584", currentCents: "58", oldPrice: "3667", oldCents: "66", monthly: "48", leadTime: "16 Wks", desc: "Deep, textured, and built to take whatever a kitchen throws at it — a matte finish that feels as considered as it looks.", type: "frameless" },
-  { img: imgEden, name: "EM EDEN", highlight: "GREY WOOD", currentPrice: "4835", currentCents: "70", oldPrice: "3868", oldCents: "56", monthly: "67", leadTime: "16 Wks", desc: "Where clean lines meet lasting durability — Eden's sleek slab doors bring a quietly modern edge to any kitchen.", type: "frameless" },
-  { img: imgManhattan, name: "EV", highlight: "MANHATTAN PM", currentPrice: "4048", currentCents: "48", oldPrice: "3238", oldCents: "78", monthly: "42", leadTime: "16 Wks", desc: "Matte, minimal, and built to stay spotless — Manhattan's slab doors are modern simplicity at its best.", type: "frameless" }
+  { img: imgMero, name: "MERO", highlight: "PAINTED WHITE", currentPrice: "3928", currentCents: "63", oldPrice: "4586", oldCents: "84", monthly: "40", leadTime: "3 Wks", desc: "Simple, honest, and built to last – the Mero shaker is the style that never goes out of fashion.", type: "framed", link: "https://expresskitchens.com/cabinets/assembled/mero/" },
+  { img: imgDerry, name: "DERRY", highlight: "PAINTED STRATUS", currentPrice: "4400", currentCents: "93", oldPrice: "5138", oldCents: "27", monthly: "67", leadTime: "3 Wks", desc: "Understated craftsmanship and honest value — the Derry shaker is the style that lets the rest of your kitchen shine.", type: "framed", link: "https://expresskitchens.com/cabinets/assembled/derry/" },
+  { img: imgAvon, name: "AVON", highlight: "PAINTED WHITE", currentPrice: "3989", currentCents: "55", oldPrice: "3840", oldCents: "50", monthly: "30", leadTime: "3 Wks", desc: "Clean lines, warm feel, and priced for real life — the Avon shaker delivers without compromise.", type: "framed", link: "https://expresskitchens.com/cabinets/assembled/Avon/" },
+  { img: imgTribeca, name: "EM", highlight: "TRIBECA A", currentPrice: "4584", currentCents: "58", oldPrice: "3667", oldCents: "66", monthly: "48", leadTime: "16 Wks", desc: "Deep, textured, and built to take whatever a kitchen throws at it — a matte finish that feels as considered as it looks.", type: "frameless", link: "https://expresskitchens.com/cabinets/assembled/em-tribeca-a/" },
+  { img: imgEden, name: "EM EDEN", highlight: "GREY WOOD", currentPrice: "4835", currentCents: "70", oldPrice: "3868", oldCents: "56", monthly: "67", leadTime: "16 Wks", desc: "Where clean lines meet lasting durability — Eden's sleek slab doors bring a quietly modern edge to any kitchen.", type: "frameless", link: "https://expresskitchens.com/cabinets/assembled/EM-EDEN/" },
+  { img: imgManhattan, name: "EV", highlight: "MANHATTAN PM", currentPrice: "4048", currentCents: "48", oldPrice: "3238", oldCents: "78", monthly: "42", leadTime: "16 Wks", desc: "Matte, minimal, and built to stay spotless — Manhattan's slab doors are modern simplicity at its best.", type: "frameless", link: "https://expresskitchens.com/cabinets/assembled/ev-manhattan-pm/" }
 ];
 
 const features = [
@@ -36,7 +36,7 @@ const features = [
 ];
 ---
 
-<section class="ek-popular-section">
+<section class="ek-popular-section" id="productSection">
   <div class="container ek-popular-container">
     
     <!-- Header -->
@@ -139,10 +139,10 @@ const features = [
 
               <p class="ek-product-desc">{product.desc}</p>
               
-              <button class="ek-btn-shop">
+              <a href={product.link} target="_blank" rel="noopener noreferrer" class="ek-btn-shop">
                 <Image src={iconCart} alt="Cart" class="cart-icon" width={18} height={18} /> 
                 Shop Now
-              </button>
+              </a>
             </div>
           </div>
         </div>
@@ -479,12 +479,15 @@ const features = [
     border: none;
     border-radius: 6px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
     width: 160px;
+    text-decoration: none;
   }
   
   .ek-btn-shop:hover {
     background-color: var(--ek-primary-red);
+    color: var(--ek-white);
+    text-decoration: none;
   }
 
   .cart-icon {

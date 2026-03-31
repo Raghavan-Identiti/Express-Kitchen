@@ -58,21 +58,16 @@ const stats = [
 
   .ek-counter-grid {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: 0.8fr 1.1fr 1fr 1fr 0.7fr 0.7fr;
     width: 100%;
     gap: 0;
   }
 
-  .ek-counter-grid .ek-counter-item:nth-child(1) {
-    padding: 0px;
-    justify-content: center;
-  }
-
   .ek-counter-item {
-    padding: 0 40px;
+    padding: 0 15px;
     position: relative;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
   }
 
   .ek-counter-item:not(:last-child)::after {
@@ -119,13 +114,12 @@ const stats = [
   .ek-counter-label {
     font-family: var(--ek-primary-font);
     color: var(--ek-gray-tint-25);
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 500;
     line-height: 120%;
     letter-spacing: 0%;
     margin: 10px 0;
     text-align: left;
-    min-width: 190px;
   }
 
   @media (max-width: 1200px) {
@@ -175,6 +169,9 @@ const stats = [
     }
     .col:nth-last-child(2) {
       border-bottom: 1px solid rgba(242, 8, 25, 0.1);
+    }
+    .ek-counter-item {
+      padding: 0px;
     }
   }
 </style>
