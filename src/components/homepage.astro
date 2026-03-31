@@ -150,13 +150,18 @@ import Footer from "../components/Footer.astro";
   .ek-hero-video {
     width: 100%;
     height: auto;
-    max-width: 100%;
+    min-width: 700px;
     outline: 5px solid white;
     outline-offset: -5px;
     border-radius: 8px;
   }
 
   /* Responsive overrides (Bootstrap handles mostly everything now) */
+  @media (max-width: 1200px) {
+    .ek-hero-video {
+      min-width: unset;
+    }
+  }
   @media (max-width: 991px) {
     .ek-hero {
       padding: 60px 0;

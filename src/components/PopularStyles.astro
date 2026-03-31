@@ -537,6 +537,38 @@ const features = [
       justify-content: center;
     }
   }
+  @media (max-width: 767px){
+    .ek-product-title {
+      font-size: 20px;
+      text-align: center;
+    }
+    .ek-popular-footer p{
+      text-align: center;
+    }
+    .ek-price-grid {
+      flex-direction: column;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .ek-price-block {
+      border-right: none;
+      border-bottom: 1px solid var(--ek-red-tint-40);
+      width: 100%;
+    }
+    .ek-price-block:last-child {
+      border-bottom: none;
+    }
+    .ek-price-primary {
+      justify-content: center;
+    }
+    .ek-product-desc {
+      text-align: center;
+    }
+    .ek-btn-shop {
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 
   /* Filter Animation Styles */
   .style-grid-item {
