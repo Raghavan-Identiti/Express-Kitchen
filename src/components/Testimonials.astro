@@ -58,17 +58,17 @@ const testimonials = [
     <div class="ek-testimonial-carousel">
       <!-- Desktop arrows sit outside viewport as flex siblings -->
       <button class="ek-carousel-control prev desktop-arrow"
-        ><Image src={testimonial_arrow_icon} alt="Previous" /></button
+        ><Image src={testimonial_arrow_icon} alt="Previous" loading="lazy" /></button
       >
 
       <!-- Inner wrapper: on mobile, arrows are absolutely positioned over this -->
       <div class="ek-carousel-inner">
         <!-- Mobile-only arrows inside the inner wrapper -->
         <button class="ek-carousel-control prev mobile-arrow"
-          ><Image src={testimonial_arrow_icon} alt="Previous" /></button
+          ><Image src={testimonial_arrow_icon} alt="Previous" loading="lazy" /></button
         >
         <button class="ek-carousel-control next mobile-arrow"
-          ><Image src={testimonial_arrow_icon} alt="Next" /></button
+          ><Image src={testimonial_arrow_icon} alt="Next" loading="lazy" /></button
         >
 
         <div class="ek-carousel-viewport">
@@ -81,6 +81,7 @@ const testimonials = [
                     alt="Testimonial background"
                     class="ek-testimonial-image"
                     inferSize={true}
+                    loading="lazy"
                   />
                   <div class="ek-card-content">
                     <h4>{t.name}</h4>
@@ -96,7 +97,7 @@ const testimonials = [
       </div>
 
       <button class="ek-carousel-control next desktop-arrow"
-        ><Image src={testimonial_arrow_icon} alt="Next" /></button
+        ><Image src={testimonial_arrow_icon} alt="Next" loading="lazy" /></button
       >
     </div>
   </div>

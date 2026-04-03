@@ -19,15 +19,15 @@ import { Image } from "astro:assets";
     <div class="slider-wrapper">
       <div class="slider-container" id="kitchen-slider-container">
         <div class="before-image">
-          <Image src={beforeImage} alt="Before Image" />
+          <Image src={beforeImage} alt="Before Image" loading="lazy" />
         </div>
         <div class="after-image">
-          <Image src={afterImage} alt="After Image" />
+          <Image src={afterImage} alt="After Image" loading="lazy" />
         </div>
         <div class="slider-handle" id="sliderHandle"></div>
         <div class="slider-line">
           <div class="pulse-container">
-            <Image src={slider_icon} alt="Slider Handle" />
+            <Image src={slider_icon} alt="Slider Handle" loading="lazy" />
           </div>
         </div>
       </div>

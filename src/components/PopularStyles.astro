@@ -57,8 +57,8 @@ const features = [
       </p>
       
       <div class="ek-header-badges">
-        <Image src={badge_price_match} alt="Price Match Guarantee" class="ek-badge-img" />
-        <Image src={badge_finance} alt="0% APR Finance" class="ek-badge-img" />
+        <Image src={badge_price_match} alt="Price Match Guarantee" class="ek-badge-img" loading="lazy" />
+        <Image src={badge_finance} alt="0% APR Finance" class="ek-badge-img" loading="lazy" />
       </div>
     </div>
 
@@ -84,7 +84,7 @@ const features = [
       <div class="ek-feature-list d-flex flex-wrap gap-3 align-items-center">
         {features.map(f => (
           <div class="ek-feature-item">
-            <Image src={f.icon} alt={f.label} width={16} height={16} style="width:16px; height:16px; margin-right:10px;" />
+            <Image src={f.icon} alt={f.label} width={16} height={16} style="width:16px; height:16px; margin-right:10px;" loading="lazy" />
             <span>{f.label}</span>
           </div>
         ))}
@@ -98,7 +98,7 @@ const features = [
           <div class="ek-product-card">
             <!-- Image -->
             <div class="ek-product-img-wrap">
-              <Image src={product.img} alt={product.name} class="ek-product-img" width={400} height={300} />
+              <Image src={product.img} alt={product.name} class="ek-product-img" width={400} height={300} loading="lazy" />
               {/* <span class="ek-style-badge">{product.type}</span> */}
             </div>
             
@@ -134,7 +134,7 @@ const features = [
                 
                 <!-- Lead Time -->
                 <div class="ek-price-block ek-price-lead">
-                  <Image src={iconTruck} alt="Delivery" class="truck-icon" width={24} height={24} />
+                  <Image src={iconTruck} alt="Delivery" class="truck-icon" width={24} height={24} loading="lazy" />
                   <span>{product.leadTime}</span>
                 </div>
               </div>
@@ -142,7 +142,7 @@ const features = [
               <p class="ek-product-desc">{product.desc}</p>
               
               <a href={product.link} target="_blank" rel="noopener noreferrer" class="ek-btn-shop">
-                <Image src={iconCart} alt="Cart" class="cart-icon" width={18} height={18} /> 
+                <Image src={iconCart} alt="Cart" class="cart-icon" width={18} height={18} loading="lazy" /> 
                 Shop Now
               </a>
             </div>
@@ -582,16 +582,8 @@ const features = [
     }
   }
 
-  /* Filter Animation Styles */
-  .style-grid-item {
-    transition: opacity 0.4s ease, transform 0.4s ease;
-  }
+
   
-  .style-grid-item.filtered-out {
-    opacity: 0;
-    transform: scale(0.95);
-    display: none;
-  }
 </style>
 
 <script>
@@ -610,21 +602,22 @@ const features = [
         // Filter items
         styleItems.forEach(item => {
           const category = item.getAttribute('data-category');
+          const isMatch = filter === 'all' || filter === category;
           
-          if (filter === 'all' || filter === category) {
+          if (isMatch) {
+            // Show new items
+            (item as HTMLElement).style.display = 'block';
+            // Trigger reflow to ensure transition plays
+            void (item as HTMLElement).offsetHeight; 
             item.classList.remove('filtered-out');
-            setTimeout(() => {
-               // To allow animation to play correctly
-               (item as HTMLElement).style.display = 'block';
-            }, 0);
           } else {
-             item.classList.add('filtered-out');
-             // Optionally wait for transition to end before display: none
-             setTimeout(() => {
-                if(item.classList.contains('filtered-out')) {
+            // Hide old items
+            item.classList.add('filtered-out');
+            setTimeout(() => {
+               if(item.classList.contains('filtered-out')) {
                   (item as HTMLElement).style.display = 'none';
-                }
-             }, 400); 
+               }
+            }, 200); // Matches the updated 0.2s transition
           }
         });
       });
