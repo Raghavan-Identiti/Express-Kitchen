@@ -1,0 +1,594 @@
+---
+import "../styles/global.css";
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import { Image } from "astro:assets";
+
+import perk_plywood from "../assets/images/perk-plywood.png";
+import perk_soft_close from "../assets/images/perk-soft-close.png";
+import perk_rollout_trays from "../assets/images/perk-rollout-trays.png";
+import perk_free_shipping from "../assets/images/perk-free-shipping.png";
+import badge_price_match from "../assets/images/badge_price_match_white.svg";
+import badge_finance from "../assets/images/badge_finance_white.svg";
+
+import kitchen_gift_box from "../assets/images/kitchen-gift-box.webp";
+import kitchen_shadow from "../assets/images/kitchen-gift-box-shadow.png";
+import ek_logo_white from "../assets/images/EK_logo_white.png";
+---
+
+<style>
+  /* Base Layout */
+  .tr-main {
+    background-color: #d83d3f; /* Theme red from image */
+    font-family: var(--ek-primary-font);
+    padding: 40px 0 80px; /* Reduced top padding to account for logo */
+    color: #fff;
+    overflow: hidden;
+    min-height: 100vh;
+  }
+
+  .tr-container {
+    max-width: 1320px;
+    margin: 0 auto;
+    padding: 0 24px;
+    box-sizing: border-box;
+  }
+
+  .tr-logo-area {
+    margin-bottom: 40px;
+  }
+
+  .tr-landing-logo {
+    height: 35px; /* Adjust as needed */
+    width: auto;
+  }
+
+  .tr-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  /* Left Column typography */
+  .tr-tagline {
+    display: inline-block;
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0%;
+    margin-bottom: 24px;
+  }
+
+  .tr-headline {
+    font-size: 40px;
+    font-weight: 800;
+    line-height: 110%;
+    letter-spacing: 0%;
+    margin: 0 0 16px 0;
+    color: #ffffff;
+  }
+
+  .tr-subheadline {
+    font-family: var(--ek-primary-font);
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 140%;
+    letter-spacing: 0%;
+    margin: 0 0 32px 0;
+    color: #f8efde;
+  }
+
+  /* Perks block */
+  .tr-perks-box {
+    background-color: var(--ek-red-shade-25);
+    max-width: 640px;
+    border-radius: 12px;
+    padding: 16px 24px 24px;
+    margin-bottom: 32px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .tr-perks-header {
+    font-size: 14.5px;
+    font-weight: 600;
+    line-height: 100%;
+    letter-spacing: 0%;
+    margin: 0px 0px 15px 60px;
+    color: rgb(255, 255, 255, 0.8);
+  }
+
+  .tr-perks-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    /* gap: 16px; */
+  }
+
+  .tr-perk-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .tr-perk-img-wrap {
+    width: 51px;
+    height: 51px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #fff;
+    flex-shrink: 0;
+  }
+
+  .tr-perk-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .tr-perk-text {
+    font-size: 13px;
+    line-height: 105%;
+    font-weight: 300;
+    letter-spacing: 0%;
+    color: #fff;
+  }
+
+  /* Form Block */
+  .tr-form-box {
+    background-color: #fdf8f8;
+    border-radius: 12px;
+    padding: 32px 25px;
+    border-top: 4.25px solid #000000;
+    border-bottom: 4.25px solid #000000;
+    max-width: 640px;
+    max-height: 300px;
+  }
+
+  .tr-form-title {
+    color: #ed1d24;
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 120%;
+    letter-spacing: 0%;
+    margin: 0 0 24px 0;
+  }
+
+  .tr-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .tr-input-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .tr-input {
+    width: 100%;
+    border: 0.76px solid #ff9c9c; /* Soft red tint */
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #333;
+    outline: none;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+  }
+
+  .tr-input::placeholder {
+    color: #999;
+  }
+
+  .tr-input:focus {
+    border-color: #d33b3e;
+  }
+
+  /* Radio Group */
+  .tr-radio-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background-color: #ffefef;
+    border: 0.76px solid #ffffff;
+    border-radius: 7px;
+    min-height: 42px;
+  }
+
+  .tr-radio-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+  }
+
+  .tr-radio-label input[type="radio"] {
+    accent-color: #d33b3e;
+    width: 14px;
+    height: 14px;
+    margin: 0;
+    cursor: pointer;
+  }
+
+  .tr-radio-text {
+    font-size: 10.7px;
+    color: #3f3f3f;
+    font-weight: 400;
+    line-height: 140%;
+    letter-spacing: 0%;
+  }
+
+  /* Submit row */
+  .tr-submit-row {
+    margin-top: 8px;
+  }
+
+  .tr-submit-btn {
+    background-color: #ed1c24;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 14px 24px;
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+  }
+
+  .tr-submit-btn:hover {
+    background-color: #b82d2f;
+  }
+
+  .tr-disclaimer {
+    font-size: 11px;
+    font-weight: 400;
+    color: #9c9696;
+    line-height: 100%;
+    padding-left: 10px;
+  }
+
+  .tr-disclaimer a {
+    color: #9c9696;
+    text-decoration: underline;
+  }
+
+  /* Right Column (Hero image) */
+  .tr-right-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+
+  .tr-image-wrapper {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: -40px;
+    position: relative;
+  }
+
+  .tr-hero-shadow {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    bottom: -15px;
+    left: 0;
+    z-index: 1;
+    mix-blend-mode: multiply;
+    animation: shadowPulse 4s ease-in-out infinite;
+  }
+
+  .tr-hero-box {
+    width: 100%;
+    height: auto;
+    display: block;
+    position: relative;
+    z-index: 2;
+    animation: boxFloat 4s ease-in-out infinite;
+  }
+
+  @keyframes boxFloat {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  @keyframes shadowPulse {
+    0%,
+    100% {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: translateY(50px) scale(1);
+      opacity: 1;
+    }
+  }
+
+  .tr-badges-container {
+    display: flex;
+    gap: 16px;
+    margin-left: 24px;
+    margin-bottom: 24px;
+    z-index: 2;
+  }
+  .tr-badges-container img {
+    width: 70px;
+    height: auto;
+  }
+  .tr-badges-container img:first-child {
+    width: 90px;
+  }
+
+  .tr-badge {
+    width: 70px;
+    height: auto;
+  }
+
+  /* Responsive Design */
+  @media (max-width: 1200px) {
+    .tr-headline {
+      font-size: 40px;
+    }
+    .tr-perks-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px 16px;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .tr-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .tr-right-col {
+      order: -1; /* Puts image on top for mobile */
+      margin-bottom: 40px;
+      align-items: center;
+    }
+
+    .tr-image-wrapper {
+      margin-bottom: 20px;
+    }
+
+    .tr-badges-container {
+      margin-left: 0;
+      justify-content: center;
+      margin-bottom: 0;
+    }
+
+    .tr-form-box {
+      padding: 24px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .tr-headline {
+      font-size: 32px;
+    }
+    .tr-subheadline {
+      font-size: 16px;
+    }
+
+    .tr-input-row {
+      grid-template-columns: 1fr;
+    }
+
+    .tr-radio-group {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .tr-submit-row {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      text-align: center;
+    }
+
+    .tr-disclaimer {
+      padding-left: 0;
+    }
+  }
+</style>
+
+<Layout>
+  <!-- Tax Refund Hero Section -->
+  <main class="tr-main" id="taxRefundSection">
+    <div class="tr-container">
+      <!-- Logo placement matching the image -->
+      <div class="tr-logo-area">
+        <Image
+          src={ek_logo_white}
+          alt="Express Kitchens"
+          class="tr-landing-logo"
+        />
+      </div>
+
+      <div class="tr-grid">
+        <!-- Left Column -->
+        <div class="tr-left-col">
+          <!-- Tagline -->
+          <div class="tr-tagline">
+            TAX REFUND SPECIAL — LIMITED PERIOD OFFER
+          </div>
+
+          <!-- Headlines -->
+          <h1 class="tr-headline">
+            Your Tax Refund Can Become a<br />New Kitchen by Next Week.
+          </h1>
+          <p class="tr-subheadline">
+            50,000 all-plywood cabinets ready-to-ship.<br />
+            Factory-direct prices. Installed in days, not months.
+          </p>
+
+          <!-- Perks Box -->
+          <div class="tr-perks-box">
+            <div class="tr-perks-header">
+              Every upgrade included. No hidden costs
+            </div>
+            <div class="tr-perks-grid">
+              <div class="tr-perk-item">
+                <div class="tr-perk-img-wrap">
+                  <Image
+                    src={perk_plywood}
+                    alt="Plywood box free upgrade"
+                    class="tr-perk-img"
+                    loading="lazy"
+                  />
+                </div>
+                <span class="tr-perk-text"
+                  >Plywood<br />box free<br />upgrade</span
+                >
+              </div>
+
+              <div class="tr-perk-item">
+                <div class="tr-perk-img-wrap">
+                  <Image
+                    src={perk_soft_close}
+                    alt="Soft-close hinges & drawers"
+                    class="tr-perk-img"
+                    loading="lazy"
+                  />
+                </div>
+                <span class="tr-perk-text"
+                  >Soft-close<br />hinges &<br />drawers</span
+                >
+              </div>
+
+              <div class="tr-perk-item">
+                <div class="tr-perk-img-wrap">
+                  <Image
+                    src={perk_rollout_trays}
+                    alt="Rollout trays discount & organizers"
+                    class="tr-perk-img"
+                    loading="lazy"
+                  />
+                </div>
+                <span class="tr-perk-text"
+                  >Rollout trays<br />discount &<br />organizers</span
+                >
+              </div>
+
+              <div class="tr-perk-item">
+                <div class="tr-perk-img-wrap">
+                  <Image
+                    src={perk_free_shipping}
+                    alt="Free shipping on handles & free samples"
+                    class="tr-perk-img"
+                    loading="lazy"
+                  />
+                </div>
+                <span class="tr-perk-text"
+                  >Free shipping<br />on handles &<br />free samples</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Form Box -->
+          <div class="tr-form-box">
+            <h3 class="tr-form-title">Put Your Refund to Work</h3>
+
+            <form class="tr-form" onsubmit="event.preventDefault();">
+              <div class="tr-input-row">
+                <input
+                  type="text"
+                  class="tr-input"
+                  placeholder="First Name*"
+                  required
+                />
+                <input
+                  type="email"
+                  class="tr-input"
+                  placeholder="Email*"
+                  required
+                />
+              </div>
+
+              <div class="tr-input-row tr-mobile-stack">
+                <input
+                  type="tel"
+                  class="tr-input"
+                  placeholder="Contact Number*"
+                  required
+                />
+
+                <div class="tr-radio-group">
+                  <label class="tr-radio-label">
+                    <input type="radio" name="contactType" value="showroom" />
+                    <span class="tr-radio-text">Visit Showroom</span>
+                  </label>
+                  <label class="tr-radio-label">
+                    <input type="radio" name="contactType" value="consult" />
+                    <span class="tr-radio-text">Design Consult</span>
+                  </label>
+                  <label class="tr-radio-label">
+                    <input type="radio" name="contactType" value="callback" />
+                    <span class="tr-radio-text">Callback</span>
+                  </label>
+                </div>
+              </div>
+
+              <div class="tr-input-row tr-submit-row tr-mobile-stack">
+                <button type="submit" class="tr-submit-btn">Get In Touch</button
+                >
+                <div class="tr-disclaimer">
+                  *Your details stay with us - no spam, ever.<br />
+                  View <a href="#">Privacy Policy</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="tr-right-col">
+          <div class="tr-image-wrapper" style="position: relative;">
+            <Image
+              src={kitchen_shadow}
+              alt="Shadow"
+              class="tr-hero-shadow"
+              loading="lazy"
+            />
+            <Image
+              src={kitchen_gift_box}
+              alt="New Kitchen"
+              class="tr-hero-box"
+              loading="lazy"
+            />
+          </div>
+
+          <!-- Static Badges -->
+          <div class="tr-badges-container">
+            <Image
+              src={badge_price_match}
+              alt="Price Match Guarantee"
+              class="tr-badge"
+            />
+            <Image src={badge_finance} alt="0% APR Finance" class="tr-badge" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Standard Footer -->
+  <Footer />
+</Layout>
