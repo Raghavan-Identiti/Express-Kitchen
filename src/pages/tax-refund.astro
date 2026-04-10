@@ -353,27 +353,56 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
 
   @media (max-width: 991px) {
     .tr-grid {
-      grid-template-columns: 1fr;
+      display: flex;
+      flex-direction: column;
     }
 
+    .tr-left-col,
     .tr-right-col {
-      order: -1; /* Puts image on top for mobile */
-      margin-bottom: 40px;
-      align-items: center;
+      display: contents;
     }
 
     .tr-image-wrapper {
+      order: 1;
       margin-bottom: 20px;
     }
 
+    .tr-tagline {
+      order: 2;
+      margin-bottom: 16px;
+    }
+
+    .tr-headline {
+      order: 3;
+      font-size: 36px;
+    }
+
+    .tr-subheadline {
+      order: 4;
+    }
+
+    /* Form jumps above perks */
+    .tr-form-box {
+      order: 5;
+      margin-bottom: 32px;
+      padding: 24px;
+      max-height: none;
+      height: auto;
+      max-width: 100%;
+    }
+
+    .tr-perks-box {
+      order: 6;
+      margin-bottom: 32px;
+      max-width: 100%;
+    }
+
+    /* Badges manually dropped to the very bottom */
     .tr-badges-container {
+      order: 7;
       margin-left: 0;
       justify-content: center;
       margin-bottom: 0;
-    }
-
-    .tr-form-box {
-      padding: 24px;
     }
   }
 
@@ -404,6 +433,24 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
 
     .tr-disclaimer {
       padding-left: 0;
+    }
+
+    .tr-perks-grid {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .tr-perks-header {
+      margin: 0 0 16px 0;
+    }
+    .tr-perk-item:nth-child(1) {
+      margin-left: -10px;
+    }
+    .tr-perk-item:nth-child(2) {
+      margin-left: -6px;
+    }
+    .tr-perk-item {
+      width: 100%;
+      justify-content: center;
     }
   }
 </style>
