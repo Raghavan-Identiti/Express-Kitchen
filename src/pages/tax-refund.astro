@@ -136,6 +136,8 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
     font-weight: 300;
     letter-spacing: 0%;
     color: #fff;
+    display: inline-block;
+    max-width: 90px;
   }
 
   /* Form Block */
@@ -257,6 +259,7 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
     color: #9c9696;
     line-height: 100%;
     padding-left: 10px;
+    max-width: 200px;
   }
 
   .tr-disclaimer a {
@@ -441,14 +444,10 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
       gap: 16px;
     }
     .tr-perks-header {
+      font-size: 16px;
       margin: 0 0 16px 0;
     }
-    .tr-perk-item:nth-child(1) {
-      margin-left: -10px;
-    }
-    .tr-perk-item:nth-child(2) {
-      margin-left: -6px;
-    }
+
     .tr-perk-item {
       width: 100%;
       justify-content: center;
@@ -459,6 +458,22 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
     }
     .tr-form-box {
       width: 100%;
+    }
+    .tr-logo-area {
+      display: flex;
+      justify-content: center;
+    }
+    .tr-perk-img-wrap {
+      width: 55px;
+      height: 55px;
+    }
+    .tr-perk-text {
+      font-size: 15px;
+      text-align: left;
+      max-width: 170px;
+    }
+    .tr-perks-box {
+      padding-top: 30px;
     }
   }
 </style>
@@ -508,9 +523,7 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
                     loading="lazy"
                   />
                 </div>
-                <span class="tr-perk-text"
-                  >Plywood<br />box free<br />upgrade</span
-                >
+                <span class="tr-perk-text">Plywood box free upgrade</span>
               </div>
 
               <div class="tr-perk-item">
@@ -522,9 +535,7 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
                     loading="lazy"
                   />
                 </div>
-                <span class="tr-perk-text"
-                  >Soft-close<br />hinges &<br />drawers</span
-                >
+                <span class="tr-perk-text">Soft-close hinges & drawers</span>
               </div>
 
               <div class="tr-perk-item">
@@ -537,7 +548,7 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
                   />
                 </div>
                 <span class="tr-perk-text"
-                  >Rollout trays<br />discount &<br />organizers</span
+                  >Rollout trays discount & organizers</span
                 >
               </div>
 
@@ -551,7 +562,7 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
                   />
                 </div>
                 <span class="tr-perk-text"
-                  >Free shipping<br />on handles &<br />free samples</span
+                  >Free shipping on handles & free samples</span
                 >
               </div>
             </div>
@@ -605,8 +616,9 @@ import ek_logo_white from "../assets/images/EK_logo_white.png";
                 <button type="submit" class="tr-submit-btn">Get In Touch</button
                 >
                 <div class="tr-disclaimer">
-                  *Your details stay with us - no spam, ever.<br />
-                  View <a href="#">Privacy Policy</a>
+                  *Your details stay with us - no spam, ever. View <a href="#"
+                    >Privacy Policy</a
+                  >
                 </div>
               </div>
             </form>
